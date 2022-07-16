@@ -1,25 +1,16 @@
 extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var w = 11
-var h = 11
+var mapMatrix = []
+#var OurRandom = preload("OurRandom.gd")
 
-var mapMatrix=[]
-
-var OurRandom = preload("OurRandom.gd")
-var random
-
-var tileMap
+onready var rng = RandomNumberGenerator.new()
+onready var tileMap = get_node("Buildings")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
-	random = OurRandom.new()
-	tileMap = get_node("Buildings")
+	rng.randomize()
 
 	# Create empty matrix
 	for x in range(11):
@@ -65,45 +56,49 @@ func generate1(x, y):
 		setMatrix(x, y, 'main')
 		return
 	
-	var rand = random.goFloat()
+	var rand = rng.randf()
 	
-	if rand < .35:
+	if rand < .3:
 		setMatrix(x, y, 'tree')
 		return
 
 
 func generate2(x, y):
 
-	var rand = random.goFloat()
+	var rand = rng.randf()
 	
-	if rand < .2:
+	if rand < .15:
 		setMatrix(x, y, 'stone')
 		return
 
-	if rand < .4:
+	if rand < .25:
 		setMatrix(x, y, 'tree')
 		return
 
 
 func generate3(x, y):
 
-	var rand = random.goFloat()
+	var rand = rng.randf()
 	
-	if rand < .2:
+	if rand < .1:
 		setMatrix(x, y, 'gem')
 		return
 
-	if rand < .4:
+	if rand < .2:
 		setMatrix(x, y, 'stone')
 		return
 
 
 
 var typeNumberDict = {
-	'main': 8,
-	'tree': 11,
-	'stone': 10,
-	'gem': 9,
+	'main': 19,
+	'tree': 12,
+	'stone': 13,
+	'gem': 14,
+	'gather-gem': 15,
+	'gather-stone': 16,
+	'gather-wood': 17,
+	'workshop': 18
 }
 
 func setMatrix(x, y, type):
