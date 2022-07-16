@@ -30,6 +30,7 @@ var shopItems = [
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	{
+		building = null,
 		name = "Upgrade tools",
 		description = "Allows to break Stone",
 		disabled = "true",
@@ -37,6 +38,7 @@ var shopItems = [
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	{
+		building = null,
 		name = "2nd Upgrade tools",
 		description = "Allows to break Gem",
 		disabled = "true",
