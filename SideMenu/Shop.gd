@@ -1,6 +1,6 @@
 extends MarginContainer
 
-var shopItems = [
+export var shopItems = [
 	{
 		building = 'road',
 		name = "Road",
@@ -42,7 +42,7 @@ var shopItems = [
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	{
-		building = null,
+		building = "",
 		name = "Upgrade tools",
 		description = "Allows to break Stone",
 		disabled = true,
@@ -50,7 +50,7 @@ var shopItems = [
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	{
-		building = null,
+		building = "",
 		name = "2nd Upgrade tools",
 		description = "Allows to break Gem",
 		disabled = true,
@@ -62,7 +62,6 @@ var shopItems = [
 func _ready():
 	var shopItemScene = preload("res://SideMenu/ShopItem.tscn")
 	for key in shopItems:
-		if !key.disabled:
 			var scene = shopItemScene.instance()
 			scene.Building = key.building
 			scene.ItemName = key.name
@@ -71,4 +70,18 @@ func _ready():
 			scene.GemPrice = key.price[2]
 			scene.ManaPrice = key.price[3]
 			scene.imgPath = key.imgPath
+			scene.disabled = key.disabled
 			get_node("VBoxContainer/ScrollContainer/VBoxContainer/").add_child(scene)
+	
+func UpdateShop(name):
+	var shopItems = get_node("VBoxContainer/ScrollContainer/VBoxContainer/").get_children()
+	if(name == "Workshop"):
+		shopItems[1].disabled = true
+		shopItems[5].disabled = false
+	if(name == "Upgrade tools"):
+		shopItems[5].disabled = true
+		shopItems[6].disabled = false	
+	if(name == "2nd Upgrade tools"):
+		shopItems[6].disabled = true
+	
+		

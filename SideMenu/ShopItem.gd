@@ -1,7 +1,6 @@
 extends Control
 
 enum ItemType {Wood, Stone, Gem, Mana}
-#enum BuildingType {WoodHouse, StoneHouse, GemHouse, Workshop}
 
 export var Building = ''
 export var ItemName = 'Upgrade tools'
@@ -9,10 +8,12 @@ export var WoodPrice = 4
 export var StonePrice = 3
 export var GemPrice = 2
 export var ManaPrice = 1
+export var disabled = false
 export var imgPath = "res://assets/Buildings/castle.png"
 
 onready var mainScene = get_node("/root/Main")
 onready var buyBtn = get_node("HBoxContainer2/VBoxContainer/HBoxContainer/BuyBtn")
+onready var shopScene = get_node("/root/Main/SideMenu/MarginContainer/Shop")
 
 func _ready():
 	get_node("HBoxContainer2/VBoxContainer/HBoxContainer/Name").text = ItemName
@@ -21,6 +22,7 @@ func _ready():
 
 func _process(delta):
 	CheckForResources()
+	self.visible = !disabled
 
 func setPrice():
 	var ItemScene = preload("res://SideMenu/ResourceIcon&Quantity.tscn")
@@ -48,6 +50,9 @@ func setPrice():
 func _on_TextureButton_pressed():
 	print("Bought")
 	mainScene.Buy(WoodPrice, StonePrice, GemPrice, ManaPrice,Building)
+	print(shopScene.name)
+	shopScene.UpdateShop(ItemName);
+	
 
 func CheckForResources():
 	if mainScene.CanBuy(WoodPrice, StonePrice, GemPrice, ManaPrice):
