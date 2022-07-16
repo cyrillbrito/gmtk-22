@@ -64,7 +64,8 @@ func _ready():
 	for key in shopItems:
 		if !key.disabled:
 			var scene = shopItemScene.instance()
-			scene.ItemName = key.name;
+			scene.Building = key.building
+			scene.ItemName = key.name
 			scene.WoodPrice = key.price[0]
 			scene.StonePrice = key.price[1]
 			scene.GemPrice = key.price[2]

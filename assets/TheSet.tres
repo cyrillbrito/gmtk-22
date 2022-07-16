@@ -154,7 +154,7 @@
 17/z_index = 0
 18/name = "workstop"
 18/texture = ExtResource( 1 )
-18/tex_offset = Vector2( 0, -250 )
+18/tex_offset = Vector2( 22, -269 )
 18/modulate = Color( 1, 1, 1, 1 )
 18/region = Rect2( 2628, 1400, 292, 560 )
 18/tile_mode = 0

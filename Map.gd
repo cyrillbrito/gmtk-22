@@ -8,7 +8,10 @@ var mapMatrix = []
 onready var rng = RandomNumberGenerator.new()
 onready var tileMap: TileMap = get_node("Buildings")
 onready var tileMap2: TileMap = get_node("Buildings2")
+onready var tileMap3: TileMap = get_node("Buildings3")
 onready var mainNode = get_parent()
+
+var placing
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -101,10 +104,11 @@ func setMatrix(x, y, type):
 func _input(event):
 
 	var mousePos = tileMap.world_to_map(tileMap.to_local(event.position))
-	if mousePos.x < 0 || mousePos.x > 10 || mousePos.y < -10 || mousePos.y > 0:
+	if mousePos.x < 0 || mousePos.x > 10 || mousePos.y < -10 || mousePos.y > 0 || (mousePos.x == 1 && mousePos.y == -1):
 		return
 
 	tileMap2.clear()
+	tileMap3.clear()
 
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
 		mouseClick(mousePos)
@@ -112,6 +116,12 @@ func _input(event):
 		mouseMove(mousePos)
 
 func mouseClick(mousePos: Vector2):
+	
+	if placing:
+		setMatrix(mousePos.x, mousePos.y, placing)
+		placing = null
+		mainNode.gameState = StateEnum.unblocked
+		return
 	
 	if mapMatrix[mousePos.x][mousePos.y] == 'tree':
 		mainNode.gatherWood()
@@ -121,10 +131,15 @@ func mouseClick(mousePos: Vector2):
 		mainNode.gatherGem()
 
 func mouseMove(mousePos: Vector2):
-	var cell = tileMap.get_cellv(mousePos)
-	if cell != -1:
-		tileMap2.set_cellv(mousePos, cell)
+	var cell
+	if placing:
+		tileMap3.set_cellv(mousePos, typeNumberDict[placing])
+	else:
+		cell = tileMap.get_cellv(mousePos)
+		if cell != -1:
+			tileMap2.set_cellv(mousePos, cell)
 
 func placeBuilding(building):
 	print("Placing Building")
+	placing = building
 	mainNode.gameState = StateEnum.unblocked

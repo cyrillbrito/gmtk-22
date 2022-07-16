@@ -3,7 +3,7 @@ extends Node2D
 enum StateEnum {rolling, blocked, unblocked}
 var gameRound = 0
 
-var wood = 0
+var wood = 50
 var stone = 0
 var gem = 0
 var mana = 5
@@ -43,7 +43,8 @@ func Buy(_wood, _stone, _gem, _mana, building):
 	RemoveResources(_wood, _stone, _gem, _mana)
 	if(building != null):
 		gameState = StateEnum.blocked
-		get_node("Map").placeBuilding(building);
+		get_node("Map").placeBuilding(building)
+
 
 func gatherWood():
 	if gameState != StateEnum.unblocked:
