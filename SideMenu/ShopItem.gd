@@ -3,6 +3,7 @@ extends Control
 enum ItemType {Wood, Stone, Gem, Mana}
 #enum BuildingType {WoodHouse, StoneHouse, GemHouse, Workshop}
 
+export var Building = ''
 export var ItemName = 'Upgrade tools'
 export var WoodPrice = 4
 export var StonePrice = 3
