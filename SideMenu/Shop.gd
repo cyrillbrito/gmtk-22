@@ -59,6 +59,8 @@ export var shopItems = [
 	},
 ]
 
+onready var mainNode = get_node("/root/Main")
+
 func _ready():
 	var shopItemScene = preload("res://SideMenu/ShopItem.tscn")
 	for key in shopItems:
@@ -81,7 +83,7 @@ func UpdateShop(name):
 	if(name == "Upgrade tools"):
 		shopItems[5].disabled = true
 		shopItems[6].disabled = false	
+		mainNode.toolsLevel= 2
 	if(name == "2nd Upgrade tools"):
 		shopItems[6].disabled = true
-	
-		
+		mainNode.toolsLevel= 3

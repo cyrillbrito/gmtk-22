@@ -1,13 +1,14 @@
 extends Node2D
 
 enum StateEnum {rolling, blocked, unblocked}
-var gameRound = 0
+var gameRound = 1
 
 var wood = 50
-var stone = 0
+var stone = 10
 var gem = 0
 var mana = 5
 
+#updated on shop script
 export var toolsLevel = 1
 export var gameState = StateEnum.unblocked
 
@@ -20,8 +21,9 @@ func RollDice():
 	print(diceValue)
 	return diceValue
 
-func goToNextRound():
+func NextRound():
 	gameRound+=1
+	get_node("SideMenu").day = gameRound
 	mana += 5
 
 func SetResources():
