@@ -95,3 +95,7 @@ func gatherGem():
 	var roll = yield(dice.roll(), 'completed')
 	wood += ((toolsLevel - 2) * 5) + roll
 	gameState = StateEnum.unblocked
+
+func FinishGame():
+		var endGame = load("res://EndGame/EndGame.tscn").instance()
+		self.add_child(endGame)

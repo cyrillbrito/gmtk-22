@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/Ui Assets/btn.png" type="Texture" id=1]
+[ext_resource path="res://EndGame/EndGame.gd" type="Script" id=2]
+
+[node name="EndGame" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="MarginContainer" type="VBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer"]
+margin_top = 256.0
+margin_right = 1024.0
+margin_bottom = 287.0
+text = "Great Game!
+You finisih the game"
+align = 1
+
+[node name="Container" type="CenterContainer" parent="MarginContainer"]
+margin_top = 291.0
+margin_right = 1024.0
+margin_bottom = 343.0
+
+[node name="PlayAgain" type="TextureButton" parent="MarginContainer/Container"]
+margin_left = 415.0
+margin_right = 608.0
+margin_bottom = 52.0
+size_flags_horizontal = 5
+size_flags_vertical = 5
+texture_normal = ExtResource( 1 )
+
+[connection signal="pressed" from="MarginContainer/Container/PlayAgain" to="." method="_on_PlayAgain_pressed"]
