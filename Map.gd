@@ -5,7 +5,9 @@ var mapMatrix = []
 #var OurRandom = preload("OurRandom.gd")
 
 onready var rng = RandomNumberGenerator.new()
-onready var tileMap = get_node("Buildings")
+onready var tileMap: TileMap = get_node("Buildings")
+onready var tileMap2: TileMap = get_node("Buildings2")
+onready var mainNode: TileMap = get_node("/Main/Main")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -48,12 +50,10 @@ func _ready():
 	
 	print(mapMatrix)
 
-
-
 func generate1(x, y):
 
 	if x == 1 && y == 1:
-		setMatrix(x, y, 'main')
+		setMatrix(x, y, 'house')
 		return
 	
 	var rand = rng.randf()
@@ -61,7 +61,6 @@ func generate1(x, y):
 	if rand < .3:
 		setMatrix(x, y, 'tree')
 		return
-
 
 func generate2(x, y):
 
@@ -75,7 +74,6 @@ func generate2(x, y):
 		setMatrix(x, y, 'tree')
 		return
 
-
 func generate3(x, y):
 
 	var rand = rng.randf()
@@ -88,10 +86,8 @@ func generate3(x, y):
 		setMatrix(x, y, 'stone')
 		return
 
-
-
 var typeNumberDict = {
-	'main': 19,
+	'house': 19,
 	'tree': 12,
 	'stone': 13,
 	'gem': 14,
@@ -105,3 +101,26 @@ func setMatrix(x, y, type):
 	var number = typeNumberDict[type]
 	tileMap.set_cell(x, -y, number)
 	mapMatrix[x][y] = type
+
+
+
+func _input(event):
+
+	var mousePos = tileMap.world_to_map(tileMap.to_local(event.position))
+
+	tileMap2.clear()
+
+	if event is InputEventMouseButton:
+		mouseClick(mousePos)
+	elif event is InputEventMouseMotion:
+		mouseMove(mousePos)
+
+
+
+func mouseClick(mousePos: Vector2):
+	print(mousePos)
+	
+func mouseMove(mousePos: Vector2):
+	var cell = tileMap.get_cellv(mousePos)
+	if cell != -1:
+		tileMap2.set_cellv(mousePos, cell)

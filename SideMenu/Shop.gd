@@ -29,5 +29,5 @@ var shopItems = [
 ]
 
 func _ready():
-	for key in shopItems:
-		
+#	for key in shopItems:
+	pass

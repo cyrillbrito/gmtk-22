@@ -168,7 +168,7 @@
 18/z_index = 0
 19/name = "main"
 19/texture = ExtResource( 1 )
-19/tex_offset = Vector2( -10, -286 )
+19/tex_offset = Vector2( -2, -277 )
 19/modulate = Color( 1, 1, 1, 1 )
 19/region = Rect2( 2920, 1400, 292, 560 )
 19/tile_mode = 0
