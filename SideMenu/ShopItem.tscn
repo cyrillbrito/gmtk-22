@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://SideMenu/ShopItem.gd" type="Script" id=1]
 [ext_resource path="res://assets/Buildings/GemHarvester.png" type="Texture" id=2]
 [ext_resource path="res://assets/Ui Assets/BuyBtn.png" type="Texture" id=3]
+[ext_resource path="res://assets/Ui Assets/BuyBtnDisabled.png" type="Texture" id=4]
 
 [node name="ShopItem" type="Control"]
 anchor_right = 1.0
@@ -43,12 +44,13 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 250, 0 )
 text = "Wood Harvester"
 
-[node name="TextureButton" type="TextureButton" parent="HBoxContainer2/VBoxContainer/HBoxContainer"]
+[node name="BuyBtn" type="TextureButton" parent="HBoxContainer2/VBoxContainer/HBoxContainer"]
 margin_left = 254.0
 margin_right = 314.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 60, 50 )
 texture_normal = ExtResource( 3 )
+texture_disabled = ExtResource( 4 )
 expand = true
 stretch_mode = 4
 
@@ -58,4 +60,4 @@ margin_right = 314.0
 margin_bottom = 89.0
 rect_min_size = Vector2( 0, 35 )
 
-[connection signal="pressed" from="HBoxContainer2/VBoxContainer/HBoxContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="HBoxContainer2/VBoxContainer/HBoxContainer/BuyBtn" to="." method="_on_TextureButton_pressed"]

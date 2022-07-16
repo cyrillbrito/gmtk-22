@@ -10,10 +10,16 @@ export var GemPrice = 2
 export var ManaPrice = 1
 export var imgPath = "res://assets/Buildings/castle.png"
 
+onready var mainScene = get_node("/root/Main")
+onready var buyBtn = get_node("HBoxContainer2/VBoxContainer/HBoxContainer/BuyBtn")
+
 func _ready():
 	get_node("HBoxContainer2/VBoxContainer/HBoxContainer/Name").text = ItemName
 	get_node("HBoxContainer2/TextureRect").texture = load(imgPath)
 	setPrice()
+
+func _process(delta):
+	CheckForResources()
 
 func setPrice():
 	var ItemScene = preload("res://SideMenu/ResourceIcon&Quantity.tscn")
@@ -39,4 +45,11 @@ func setPrice():
 		get_node("HBoxContainer2/VBoxContainer/Price").add_child(manaIconScene)
 
 func _on_TextureButton_pressed():
-	get_node("/root/Main").RemoveResources(WoodPrice, StonePrice, GemPrice, ManaPrice)
+	print("Bought")
+	mainScene.RemoveResources(WoodPrice, StonePrice, GemPrice, ManaPrice)
+
+func CheckForResources():
+	if mainScene.CanBuy(WoodPrice, StonePrice, GemPrice, ManaPrice):
+		buyBtn.disabled = false
+	else: buyBtn.disabled = true
+	
