@@ -23,5 +23,5 @@ margin_top = 5.0
 margin_right = 739.0
 margin_bottom = 178.0
 
-[connection signal="pressed" from="NextRoundBtn" to="." method="_on_RollDiceBtn_pressed"]
 [connection signal="pressed" from="NextRoundBtn" to="." method="_on_NextRoundBtn_pressed"]
+[connection signal="pressed" from="NextRoundBtn" to="." method="_on_RollDiceBtn_pressed"]
