@@ -55,10 +55,14 @@ func generate1(x, y):
 		setMatrix(x, y, 'house')
 		return
 	
+	if (x == 2 && y == -1) || (x == 1 && y == -2):
+		setMatrix(x, y, 'road')
+		return
+	
 	var rand = rng.randf()
 	
-	if rand < .3:
-		setMatrix(x, y, 'tree')
+	if rand < .35:
+		setMatrix(x, y, 'wood')
 		return
 
 func generate2(x, y):
@@ -70,7 +74,7 @@ func generate2(x, y):
 		return
 
 	if rand < .25:
-		setMatrix(x, y, 'tree')
+		setMatrix(x, y, 'wood')
 		return
 
 func generate3(x, y):
@@ -87,21 +91,51 @@ func generate3(x, y):
 
 var typeNumberDict = {
 	'house': 19,
-	'tree': 12,
+	'wood': 12,
 	'stone': 13,
 	'gem': 14,
 	'gather-gem': 15,
 	'gather-stone': 16,
 	'gather-wood': 17,
-	'workshop': 18
+	'workshop': 18,
+	'road': 8
 }
 
 func setMatrix(x, y, type):
 	var number = typeNumberDict[type]
 	tileMap.set_cell(x, y, number)
 	mapMatrix[x][y] = type
+	tileMap.update_bitmask_region()
+
+
+func countAround(v, types):
+	var around = [
+		mapMatrix[v.x-1][v.y],
+		mapMatrix[v.x+1][v.y],
+		mapMatrix[v.x][v.y-1],
+		mapMatrix[v.x][v.y+1],
+	]
+	var count = 0
+	for tile in around:
+		if tile in types:
+			count += 1
+	return count
+
+func canBuild(v):
+	var validConnections = [
+		'road',
+		'house',
+		'gather-wood',
+		'gather-stone',
+		'gather-gem',
+		'workshop',
+	]
+	return 0 < countAround(v, validConnections)
 
 func _input(event):
+	
+	if !(event is InputEventMouseButton) && !(event is InputEventMouseMotion):
+		return
 
 	var mousePos = tileMap.world_to_map(tileMap.to_local(event.position))
 	if mousePos.x < 0 || mousePos.x > 10 || mousePos.y < -10 || mousePos.y > 0 || (mousePos.x == 1 && mousePos.y == -1):
@@ -118,17 +152,30 @@ func _input(event):
 func mouseClick(mousePos: Vector2):
 	
 	if placing:
-		setMatrix(mousePos.x, mousePos.y, placing)
-		placing = null
-		mainNode.gameState = StateEnum.unblocked
+		if canBuild(mousePos):
+			setMatrix(mousePos.x, mousePos.y, placing)
+			placing = null
+			mainNode.gameState = StateEnum.unblocked
+		else:
+			mainNode.AddAlert('Buildings and roads need to be next to other buildings or roads')
 		return
-	
-	if mapMatrix[mousePos.x][mousePos.y] == 'tree':
+
+	# Normal mouse moving
+	if mapMatrix[mousePos.x][mousePos.y] == 'wood':
 		mainNode.gatherWood()
 	elif mapMatrix[mousePos.x][mousePos.y] == 'stone':
 		mainNode.gatherStone()
 	elif mapMatrix[mousePos.x][mousePos.y] == 'gem':
 		mainNode.gatherGem()
+	elif mapMatrix[mousePos.x][mousePos.y] == 'gather-wood':
+		var mult = countAround(mousePos, ['wood'])
+		mainNode.gatherWood(mult)
+	elif mapMatrix[mousePos.x][mousePos.y] == 'gather-stone':
+		var mult = countAround(mousePos, ['stone'])
+		mainNode.gatherStone(mult)
+	elif mapMatrix[mousePos.x][mousePos.y] == 'gather-gem':
+		var mult = countAround(mousePos, ['gem'])
+		mainNode.gatherGem(mult)
 
 func mouseMove(mousePos: Vector2):
 	var cell
@@ -136,7 +183,7 @@ func mouseMove(mousePos: Vector2):
 		tileMap3.set_cellv(mousePos, typeNumberDict[placing])
 	else:
 		cell = tileMap.get_cellv(mousePos)
-		if cell != -1:
+		if cell != -1 && cell != 8 && cell != 18:
 			tileMap2.set_cellv(mousePos, cell)
 
 func placeBuilding(building):

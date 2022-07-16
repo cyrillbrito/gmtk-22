@@ -17,12 +17,6 @@ func _process(delta):
 	SetResources()
 	SetAlerts()
 
-var random = RandomNumberGenerator.new()
-func RollDice():
-	var diceValue = random.randi_range(1, 6)
-	print(diceValue)
-	return diceValue
-
 func NextRound():
 	gameRound+=1
 	$SideMenu.day = gameRound
@@ -60,53 +54,34 @@ func Buy(_wood, _stone, _gem, _mana, building):
 		$Map.placeBuilding(building)
 
 
-func gatherWood():
-	if gameState != StateEnum.unblocked:
-		AddAlert('Dice already rolling!')
-		return
-	if mana < 1:
-		AddAlert('You need at least 1 mana')
-		return
-	gameState = StateEnum.rolling
-	mana -= 1
-	var dice = get_node("SideMenu/MarginContainer/Dice")
-	var roll = yield(dice.roll(), 'completed')
-	wood += (toolsLevel * 5) + roll
-	gameState = StateEnum.unblocked
+func gatherWood(multiplier = 1):
+	wood += yield(preGather(1, multiplier), 'completed')
 
-func gatherStone():
-	if gameState != StateEnum.unblocked:
-		AddAlert('Dice already rolling!')
-		return
-	if toolsLevel < 2:
-		AddAlert('You need wodden tools to gather stone')
-		return
-	if mana < 1:
-		AddAlert('You need at least 1 mana')
-		return
-	gameState = StateEnum.rolling
-	mana -= 1
-	var dice = get_node("SideMenu/MarginContainer/Dice")
-	var roll = yield(dice.roll(), 'completed')
-	wood += ((toolsLevel-1) * 5) + roll
-	gameState = StateEnum.unblocked
+func gatherStone(multiplier = 1):
+	stone += yield(preGather(2, multiplier), 'completed')
 
-func gatherGem():
+func gatherGem(multiplier = 1):
+	gem += yield(preGather(3, multiplier), 'completed')
+
+func preGather(reqTool, multiplier):
 	if gameState != StateEnum.unblocked:
 		AddAlert('Dice already rolling!')
-		return
-	if toolsLevel < 3:
-		AddAlert('You need stone tools to gather gems')
-		return
+		return 0
+
+	if toolsLevel < reqTool:
+		AddAlert('You need to upgrade your tools to gather this resource.')
+		return 0
+
 	if mana < 1:
-		AddAlert('You need at least 1 mana')
-		return
+		AddAlert('You need at least 1 mana.')
+		return 0
+
 	gameState = StateEnum.rolling
 	mana -= 1
 	var dice = get_node("SideMenu/MarginContainer/Dice")
 	var roll = yield(dice.roll(), 'completed')
-	wood += ((toolsLevel - 2) * 5) + roll
 	gameState = StateEnum.unblocked
+	return ((toolsLevel + 1 - reqTool) * 5) * multiplier + roll
 
 func FinishGame():
 		var endGame = load("res://EndGame/EndGame.tscn").instance()
