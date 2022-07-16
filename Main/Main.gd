@@ -20,6 +20,6 @@ func RollDice():
 	return diceValue
 
 ##This Logic will probaily go to SideMenu
-func _on_NextRoundBtn_pressed():
+func goToNextRound():
 	gameRound+=1
 	mana += RollDice()

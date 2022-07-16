@@ -19,10 +19,10 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Side Menu" parent="." instance=ExtResource( 2 )]
-margin_left = 548.0
-margin_top = 5.0
-margin_right = 1046.0
-margin_bottom = 452.0
+margin_left = 814.0
+margin_top = 2.0
+margin_right = 1318.0
+margin_bottom = 591.0
 
 [node name="Map" parent="." instance=ExtResource( 3 )]
 position = Vector2( 53.1414, 294.431 )
