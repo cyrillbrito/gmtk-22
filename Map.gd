@@ -140,6 +140,6 @@ func mouseMove(mousePos: Vector2):
 			tileMap2.set_cellv(mousePos, cell)
 
 func placeBuilding(building):
-	print("Placing Building")
+	mainNode.AddAlert("Place Building")
 	placing = building
 	mainNode.gameState = StateEnum.unblocked

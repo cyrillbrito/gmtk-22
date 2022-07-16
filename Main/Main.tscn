@@ -20,3 +20,8 @@ margin_bottom = 591.0
 [node name="Map" parent="." instance=ExtResource( 3 )]
 position = Vector2( 53.1414, 294.431 )
 scale = Vector2( 0.25, 0.25 )
+
+[node name="alertsLabel" type="Label" parent="."]
+margin_right = 311.0
+margin_bottom = 155.0
+rect_min_size = Vector2( 300, 150 )

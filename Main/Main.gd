@@ -8,12 +8,14 @@ var stone = 10
 var gem = 0
 var mana = 5
 
-#updated on shop script
 export var toolsLevel = 1
 export var gameState = StateEnum.unblocked
+export var alerts = ['Game Started...']
+
 
 func _process(delta):
 	SetResources()
+	SetAlerts()
 
 var random = RandomNumberGenerator.new()
 func RollDice():
@@ -23,9 +25,19 @@ func RollDice():
 
 func NextRound():
 	gameRound+=1
-	get_node("SideMenu").day = gameRound
+	$SideMenu.day = gameRound
 	mana += 5
 
+func SetAlerts():
+	$alertsLabel.text = ""
+	for alert in alerts:
+		$alertsLabel.text += alert + '\n'
+
+func AddAlert(newAlert):
+	if(alerts.size()>6):
+		alerts.remove(0)
+	alerts.append(newAlert)
+	
 func SetResources():
 	get_node("SideMenu/MarginContainer/Resources/Wood/Quantity").text = str(wood)
 	get_node("SideMenu/MarginContainer/Resources/Stone/Quantity").text = str(stone)
@@ -45,15 +57,15 @@ func Buy(_wood, _stone, _gem, _mana, building):
 	RemoveResources(_wood, _stone, _gem, _mana)
 	if(building != null):
 		gameState = StateEnum.blocked
-		get_node("Map").placeBuilding(building)
+		$Map.placeBuilding(building)
 
 
 func gatherWood():
 	if gameState != StateEnum.unblocked:
-		print('Game State is not unblocked')
+		AddAlert('Dice already rolling!')
 		return
 	if mana < 1:
-		print('You need at least 1 mana')
+		AddAlert('You need at least 1 mana')
 		return
 	gameState = StateEnum.rolling
 	mana -= 1
@@ -64,13 +76,13 @@ func gatherWood():
 
 func gatherStone():
 	if gameState != StateEnum.unblocked:
-		print('Dice already rolling!')
+		AddAlert('Dice already rolling!')
 		return
 	if toolsLevel < 2:
-		print('You need wodden tools to gather stone')
+		AddAlert('You need wodden tools to gather stone')
 		return
 	if mana < 1:
-		print('You need at least 1 mana')
+		AddAlert('You need at least 1 mana')
 		return
 	gameState = StateEnum.rolling
 	mana -= 1
@@ -81,13 +93,13 @@ func gatherStone():
 
 func gatherGem():
 	if gameState != StateEnum.unblocked:
-		print('Dice already rolling!')
+		AddAlert('Dice already rolling!')
 		return
 	if toolsLevel < 3:
-		print('You need stone tools to gather gems')
+		AddAlert('You need stone tools to gather gems')
 		return
 	if mana < 1:
-		print('You need at least 1 mana')
+		AddAlert('You need at least 1 mana')
 		return
 	gameState = StateEnum.rolling
 	mana -= 1

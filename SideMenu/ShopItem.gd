@@ -48,9 +48,8 @@ func setPrice():
 		get_node("HBoxContainer2/VBoxContainer/Price").add_child(manaIconScene)
 
 func _on_TextureButton_pressed():
-	print("Bought")
+	mainScene.AddAlert("Bought " + ItemName)
 	mainScene.Buy(WoodPrice, StonePrice, GemPrice, ManaPrice,Building)
-	print(shopScene.name)
 	shopScene.UpdateShop(ItemName);
 	
 
