@@ -1,5 +1,6 @@
 extends Node2D
 
+enum StateEnum {rolling, blocked, unblocked}
 var gameRound = 0
 
 var wood = 0
@@ -7,9 +8,8 @@ var stone = 0
 var gem = 0
 var mana = 5
 
-var toolsLevel = 1
-
-var rolling = false
+export var toolsLevel = 1
+export var gameState = StateEnum.unblocked
 
 func _process(delta):
 	SetResources()
@@ -39,26 +39,28 @@ func RemoveResources(_wood, _stone, _gem, _mana):
 func CanBuy(_wood, _stone, _gem, _mana):
 	return wood >= _wood && stone >= _stone && gem >= _gem  && mana >= _mana
 	
-
+func Buy(_wood, _stone, _gem, _mana, building):
+	RemoveResources(_wood, _stone, _gem, _mana)
+	if(building != null):
+		gameState = StateEnum.blocked
+		get_node("Map").placeBuilding(building);
 
 func gatherWood():
-	if rolling:
-		print('Dice already rolling')
+	if gameState != StateEnum.unblocked:
+		print('Game State is not unblocked')
 		return
 	if mana < 1:
 		print('You need at least 1 mana')
 		return
-	rolling = true
+	gameState = StateEnum.rolling
 	mana -= 1
 	var dice = get_node("SideMenu/MarginContainer/Dice")
 	var roll = yield(dice.roll(), 'completed')
 	wood += (toolsLevel * 5) + roll
-	rolling = false
-
-
+	gameState = StateEnum.unblocked
 
 func gatherStone():
-	if rolling:
+	if gameState != StateEnum.unblocked:
 		print('Dice already rolling!')
 		return
 	if toolsLevel < 2:
@@ -67,17 +69,15 @@ func gatherStone():
 	if mana < 1:
 		print('You need at least 1 mana')
 		return
-	rolling = true
+	gameState = StateEnum.rolling
 	mana -= 1
 	var dice = get_node("SideMenu/MarginContainer/Dice")
 	var roll = yield(dice.roll(), 'completed')
 	wood += ((toolsLevel-1) * 5) + roll
-	rolling = false
-
-
+	gameState = StateEnum.unblocked
 
 func gatherGem():
-	if rolling:
+	if gameState != StateEnum.unblocked:
 		print('Dice already rolling!')
 		return
 	if toolsLevel < 3:
@@ -86,9 +86,9 @@ func gatherGem():
 	if mana < 1:
 		print('You need at least 1 mana')
 		return
-	rolling = true
+	gameState = StateEnum.rolling
 	mana -= 1
 	var dice = get_node("SideMenu/MarginContainer/Dice")
 	var roll = yield(dice.roll(), 'completed')
 	wood += ((toolsLevel - 2) * 5) + roll
-	rolling = false
+	gameState = StateEnum.unblocked

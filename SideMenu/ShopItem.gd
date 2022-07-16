@@ -47,7 +47,7 @@ func setPrice():
 
 func _on_TextureButton_pressed():
 	print("Bought")
-	mainScene.RemoveResources(WoodPrice, StonePrice, GemPrice, ManaPrice)
+	mainScene.Buy(WoodPrice, StonePrice, GemPrice, ManaPrice,Building)
 
 func CheckForResources():
 	if mainScene.CanBuy(WoodPrice, StonePrice, GemPrice, ManaPrice):

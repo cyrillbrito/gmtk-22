@@ -1,5 +1,6 @@
 extends Node2D
 
+enum StateEnum {rolling, blocked, unblocked}
 
 var mapMatrix = []
 #var OurRandom = preload("OurRandom.gd")
@@ -8,7 +9,6 @@ onready var rng = RandomNumberGenerator.new()
 onready var tileMap: TileMap = get_node("Buildings")
 onready var tileMap2: TileMap = get_node("Buildings2")
 onready var mainNode = get_parent()
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,7 +45,6 @@ func _ready():
 	for x in range(0, 8):
 		for y in range(8, 11):
 			generate3(x, -y)
-
 
 func generate1(x, y):
 
@@ -99,7 +98,6 @@ func setMatrix(x, y, type):
 	tileMap.set_cell(x, y, number)
 	mapMatrix[x][y] = type
 
-
 func _input(event):
 
 	var mousePos = tileMap.world_to_map(tileMap.to_local(event.position))
@@ -112,8 +110,6 @@ func _input(event):
 		mouseClick(mousePos)
 	elif event is InputEventMouseMotion:
 		mouseMove(mousePos)
-
-
 
 func mouseClick(mousePos: Vector2):
 	
@@ -128,3 +124,7 @@ func mouseMove(mousePos: Vector2):
 	var cell = tileMap.get_cellv(mousePos)
 	if cell != -1:
 		tileMap2.set_cellv(mousePos, cell)
+
+func placeBuilding(building):
+	print("Placing Building")
+	mainNode.gameState = StateEnum.unblocked
