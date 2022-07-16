@@ -12,11 +12,8 @@ export var imgPath = "res://assets/Buildings/castle.png"
 
 func _ready():
 	get_node("HBoxContainer2/VBoxContainer/HBoxContainer/Name").text = ItemName
-	get_node("HBoxContainer2/Sprite").texture = load(imgPath)
+	get_node("HBoxContainer2/TextureRect").texture = load(imgPath)
 	setPrice()
-
-func _on_BuyButton_pressed():
-	pass # Replace with function body.
 
 func setPrice():
 	var ItemScene = preload("res://SideMenu/ResourceIcon&Quantity.tscn")
@@ -33,10 +30,14 @@ func setPrice():
 	if GemPrice > 0:
 		var gemIconScene = ItemScene.instance()
 		gemIconScene.quantity = GemPrice;
-		gemIconScene.type = ItemType.Stone		
+		gemIconScene.type = ItemType.Gem		
 		get_node("HBoxContainer2/VBoxContainer/Price").add_child(gemIconScene)
 	if ManaPrice > 0:
 		var manaIconScene = ItemScene.instance()
 		manaIconScene.quantity = ManaPrice;
 		manaIconScene.type = ItemType.Mana		
 		get_node("HBoxContainer2/VBoxContainer/Price").add_child(manaIconScene)
+
+
+func _on_TextureButton_pressed():
+	pass # Replace with function body.

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://SideMenu/ResourceIcon&Quantity.tscn" type="PackedScene" id=1]
-[ext_resource path="res://SideMenu/ShopItem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Ui Assets/Dice.png" type="Texture" id=2]
 [ext_resource path="res://SideMenu/SideMenu.gd" type="Script" id=3]
-[ext_resource path="res://assets/Dice.png" type="Texture" id=4]
+[ext_resource path="res://assets/Ui Assets/btn.png" type="Texture" id=4]
 [ext_resource path="res://SideMenu/Shop.gd" type="Script" id=5]
+[ext_resource path="res://assets/Ui Assets/Shop Label.png" type="Texture" id=6]
 
 [node name="GUI" type="MarginContainer"]
 anchor_right = 1.0
@@ -17,76 +18,78 @@ margin_bottom = 600.0
 
 [node name="Resources" type="HBoxContainer" parent="MarginContainer"]
 margin_right = 1024.0
-margin_bottom = 32.0
+margin_bottom = 35.0
 
 [node name="Wood" parent="MarginContainer/Resources" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 61.0
-margin_bottom = 32.0
+margin_right = 64.0
+margin_bottom = 35.0
 quantity = 20
 
 [node name="Stone" parent="MarginContainer/Resources" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 65.0
-margin_right = 126.0
-margin_bottom = 32.0
+margin_left = 68.0
+margin_right = 132.0
+margin_bottom = 35.0
 type = 1
 quantity = 15
 
 [node name="Gem" parent="MarginContainer/Resources" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 130.0
-margin_right = 191.0
-margin_bottom = 32.0
+margin_left = 136.0
+margin_right = 200.0
+margin_bottom = 35.0
 type = 2
 
 [node name="Shop" type="MarginContainer" parent="MarginContainer"]
-margin_top = 36.0
+margin_top = 39.0
 margin_right = 1024.0
-margin_bottom = 354.0
+margin_bottom = 443.0
 script = ExtResource( 5 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Shop"]
+margin_top = 10.0
 margin_right = 1024.0
-margin_bottom = 318.0
+margin_bottom = 404.0
 
-[node name="ShopLabel" type="Label" parent="MarginContainer/Shop/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Shop/VBoxContainer"]
 margin_right = 1024.0
-margin_bottom = 14.0
-text = "Shop"
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 5
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Shop/VBoxContainer"]
-margin_top = 18.0
+margin_top = 104.0
 margin_right = 1024.0
-margin_bottom = 318.0
+margin_bottom = 404.0
 rect_min_size = Vector2( 0, 300 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Shop/VBoxContainer/ScrollContainer"]
 
-[node name="ShopItem" parent="MarginContainer/Shop/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 0.0
-margin_bottom = 0.0
-
 [node name="Dice" type="HBoxContainer" parent="MarginContainer"]
-visible = false
-margin_top = 340.0
+margin_top = 447.0
 margin_right = 1024.0
-margin_bottom = 426.0
+margin_bottom = 547.0
+rect_min_size = Vector2( 0, 100 )
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Dice"]
-margin_right = 86.0
-margin_bottom = 86.0
-texture = ExtResource( 4 )
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 0 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 5
 
-[node name="NextRoundBtn" type="Button" parent="MarginContainer/Dice"]
-margin_left = 90.0
-margin_right = 160.0
-margin_bottom = 86.0
-text = "Next Day"
+[node name="NextRoundBtn" type="TextureButton" parent="MarginContainer/Dice"]
+margin_left = 104.0
+margin_right = 504.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 400, 100 )
+texture_normal = ExtResource( 4 )
+expand = true
+stretch_mode = 4
