@@ -38,6 +38,5 @@ func setPrice():
 		manaIconScene.type = ItemType.Mana		
 		get_node("HBoxContainer2/VBoxContainer/Price").add_child(manaIconScene)
 
-
 func _on_TextureButton_pressed():
-	pass # Replace with function body.
+	get_node("/root/Main").RemoveResources(WoodPrice, StonePrice, GemPrice, ManaPrice)
