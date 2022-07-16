@@ -7,7 +7,7 @@ var mapMatrix = []
 onready var rng = RandomNumberGenerator.new()
 onready var tileMap: TileMap = get_node("Buildings")
 onready var tileMap2: TileMap = get_node("Buildings2")
-onready var mainNode: TileMap = get_node("/Main/Main")
+onready var mainNode = get_parent()
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,28 +23,28 @@ func _ready():
 	# Stage 1 fill
 	for x in range(0, 4):
 		for y in range(0, 4):
-			generate1(x, y)
+			generate1(x, -y)
 	
 	# Stage 2
 	for x in range(4, 8):
 		for y in range(0, 4):
-			generate2(x, y)
+			generate2(x, -y)
 	for x in range(4, 8):
 		for y in range(4, 8):
-			generate2(x, y)
+			generate2(x, -y)
 	for x in range(0, 4):
 		for y in range(4, 8):
-			generate2(x, y)
+			generate2(x, -y)
 
 	for x in range(8, 11):
 		for y in range(0, 8):
-			generate3(x, y)
+			generate3(x, -y)
 	for x in range(8, 11):
 		for y in range(8, 11):
-			generate3(x, y)
+			generate3(x, -y)
 	for x in range(0, 8):
 		for y in range(8, 11):
-			generate3(x, y)
+			generate3(x, -y)
 	
 
 	
@@ -52,7 +52,7 @@ func _ready():
 
 func generate1(x, y):
 
-	if x == 1 && y == 1:
+	if x == 1 && y == -1:
 		setMatrix(x, y, 'house')
 		return
 	
@@ -99,18 +99,19 @@ var typeNumberDict = {
 
 func setMatrix(x, y, type):
 	var number = typeNumberDict[type]
-	tileMap.set_cell(x, -y, number)
+	tileMap.set_cell(x, y, number)
 	mapMatrix[x][y] = type
-
 
 
 func _input(event):
 
 	var mousePos = tileMap.world_to_map(tileMap.to_local(event.position))
+	if mousePos.x < 0 || mousePos.x > 10 || mousePos.y < -10 || mousePos.y > 0:
+		return
 
 	tileMap2.clear()
 
-	if event is InputEventMouseButton:
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
 		mouseClick(mousePos)
 	elif event is InputEventMouseMotion:
 		mouseMove(mousePos)
@@ -118,8 +119,14 @@ func _input(event):
 
 
 func mouseClick(mousePos: Vector2):
-	print(mousePos)
 	
+	if mapMatrix[mousePos.x][mousePos.y] == 'tree':
+		mainNode.gatherWood()
+	elif mapMatrix[mousePos.x][mousePos.y] == 'stone':
+		mainNode.gatherStone()
+	elif mapMatrix[mousePos.x][mousePos.y] == 'gem':
+		mainNode.gatherGem()
+
 func mouseMove(mousePos: Vector2):
 	var cell = tileMap.get_cellv(mousePos)
 	if cell != -1:
