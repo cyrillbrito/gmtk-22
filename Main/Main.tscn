@@ -20,3 +20,6 @@ margin_bottom = 591.0
 [node name="Map" parent="." instance=ExtResource( 3 )]
 position = Vector2( 53.1414, 294.431 )
 scale = Vector2( 0.25, 0.25 )
+
+[connection signal="pressed" from="NextRoundBtn" to="." method="_on_RollDiceBtn_pressed"]
+[connection signal="pressed" from="NextRoundBtn" to="." method="_on_NextRoundBtn_pressed"]
