@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://SideMenu/ResourceIcon&Quantity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Ui Assets/Dice.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/Ui Assets/btn.png" type="Texture" id=4]
 [ext_resource path="res://SideMenu/Shop.gd" type="Script" id=5]
 [ext_resource path="res://assets/Ui Assets/Shop Label.png" type="Texture" id=6]
+[ext_resource path="res://SideMenu/Dice.gd" type="Script" id=7]
 
 [node name="GUI" type="MarginContainer"]
 anchor_right = 1.0
@@ -84,6 +85,7 @@ margin_top = 647.0
 margin_right = 1024.0
 margin_bottom = 747.0
 rect_min_size = Vector2( 0, 100 )
+script = ExtResource( 7 )
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Dice"]
 margin_right = 100.0
