@@ -4,34 +4,42 @@ var shopItems = [
 	{
 		building = 'workshop',
 		name = "Workshop",
+		description = "This building will allow you to upgrade your tools",
 		price = [3,0,0,1],
 		imgPath = "res://assets/Buildings/Workshop.png"
 	},
 	 {
 		building = 'gather-wood',
 		name = "Wood Harvester",
+		description = "This building will allow you harvest all wood surrounding it",
 		price = [3,1,0,2],
 		imgPath = "res://assets/Buildings/WoodHarvester.png"
 	},
 	{
 		building = 'gather-wood',
 		name = "Stone Harvester",
+		description = "This building will allow you harvest all stone surrounding it",
 		price = [3,1,0,2],
 		imgPath = "res://assets/Buildings/StoneHarvester.png"
 	},
 	{
 		building = 'gather-gem',
 		name = "Gem Harvester",
+		description = "This building will allow you harvest all gem surrounding it",
 		price = [3,1,2,2],
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	{
 		name = "Upgrade tools",
+		description = "Allows to break Stone",
+		disabled = "true",
 		price = [3,1,0,2],
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	{
 		name = "2nd Upgrade tools",
+		description = "Allows to break Gem",
+		disabled = "true",
 		price = [3,1,2,2],
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
