@@ -45,10 +45,7 @@ func _ready():
 	for x in range(0, 8):
 		for y in range(8, 11):
 			generate3(x, -y)
-	
 
-	
-	print(mapMatrix)
 
 func generate1(x, y):
 
