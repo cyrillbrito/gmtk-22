@@ -45,6 +45,14 @@ margin_right = 200.0
 margin_bottom = 35.0
 type = 2
 
+[node name="Mana" parent="MarginContainer/Resources" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 204.0
+margin_right = 268.0
+margin_bottom = 35.0
+type = 3
+
 [node name="Shop" type="MarginContainer" parent="MarginContainer"]
 margin_top = 39.0
 margin_right = 1024.0

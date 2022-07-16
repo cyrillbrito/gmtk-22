@@ -18,7 +18,7 @@ text = "NextRound"
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Side Menu" parent="." instance=ExtResource( 2 )]
+[node name="SideMenu" parent="." instance=ExtResource( 2 )]
 margin_left = 814.0
 margin_top = 2.0
 margin_right = 1318.0
