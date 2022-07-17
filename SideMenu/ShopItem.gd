@@ -36,6 +36,7 @@ func setPrice():
 	if StonePrice > 0:
 		var stoneIconScene = ItemScene.instance()
 		stoneIconScene.quantity = StonePrice;
+		stoneIconScene.rect_position= Vector2(10, 0)
 		stoneIconScene.type = ItemType.Stone		
 		get_node("HBoxContainer2/VBoxContainer/Price").add_child(stoneIconScene)
 	if GemPrice > 0:

@@ -20,66 +20,74 @@ font_data = ExtResource( 6 )
 [node name="GUI" type="MarginContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -694.0
+margin_right = -696.0
 margin_bottom = 236.0
 script = ExtResource( 3 )
 
 [node name="MarginContainer" type="VBoxContainer" parent="."]
-margin_right = 506.0
+margin_right = 504.0
 margin_bottom = 936.0
 
 [node name="Resourses" type="TextureRect" parent="MarginContainer"]
-margin_right = 506.0
+margin_right = 504.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 500, 150 )
 texture = ExtResource( 9 )
 
-[node name="Resources" type="HBoxContainer" parent="MarginContainer/Resourses"]
+[node name="Resources" type="Control" parent="MarginContainer/Resourses"]
 margin_left = 25.0
 margin_top = 10.0
 margin_right = 1024.0
-margin_bottom = 100.0
+margin_bottom = 110.0
 rect_min_size = Vector2( 500, 100 )
 
 [node name="Wood" parent="MarginContainer/Resourses/Resources" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 75.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 75, 75 )
+margin_top = 25.0
+margin_right = 60.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 55, 25 )
+rect_scale = Vector2( 1.5, 1.5 )
 quantity = 20
 
 [node name="Stone" parent="MarginContainer/Resourses/Resources" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 79.0
-margin_right = 154.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 75, 75 )
+margin_left = 100.0
+margin_top = 25.0
+margin_right = 160.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 55, 25 )
+rect_scale = Vector2( 1.5, 1.5 )
 type = 1
 quantity = 15
 
 [node name="Gem" parent="MarginContainer/Resourses/Resources" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 158.0
-margin_right = 233.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 75, 75 )
+margin_left = 200.0
+margin_top = 25.0
+margin_right = 260.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 55, 25 )
+rect_scale = Vector2( 1.5, 1.5 )
 type = 2
 
 [node name="Mana" parent="MarginContainer/Resourses/Resources" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 237.0
-margin_right = 312.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 75, 75 )
+margin_left = 300.0
+margin_top = 25.0
+margin_right = 360.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 55, 25 )
+rect_scale = Vector2( 1.5, 1.5 )
 type = 3
 
 [node name="Shop" type="TextureRect" parent="MarginContainer"]
 margin_top = 154.0
-margin_right = 506.0
+margin_right = 504.0
 margin_bottom = 802.0
 texture = ExtResource( 8 )
 script = ExtResource( 5 )
@@ -93,17 +101,16 @@ rect_min_size = Vector2( 450, 550 )
 
 [node name="ShopLabel2" type="Label" parent="MarginContainer/Shop/VBoxContainer"]
 modulate = Color( 0, 0, 0, 1 )
-margin_top = 10.0
 margin_right = 455.0
-margin_bottom = 69.0
+margin_bottom = 59.0
 custom_fonts/font = SubResource( 1 )
 text = "Shop"
 align = 1
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Shop/VBoxContainer"]
-margin_top = 75.0
+margin_top = 63.0
 margin_right = 455.0
-margin_bottom = 590.0
+margin_bottom = 563.0
 rect_min_size = Vector2( 455, 500 )
 texture = ExtResource( 10 )
 expand = true
@@ -121,7 +128,7 @@ rect_min_size = Vector2( 430, 170 )
 [node name="DayLabel" type="Label" parent="MarginContainer"]
 modulate = Color( 0, 0, 0, 1 )
 margin_top = 806.0
-margin_right = 506.0
+margin_right = 504.0
 margin_bottom = 832.0
 rect_min_size = Vector2( 200, 20 )
 custom_fonts/font = ExtResource( 11 )
@@ -130,7 +137,7 @@ align = 1
 
 [node name="Dice" type="HBoxContainer" parent="MarginContainer"]
 margin_top = 836.0
-margin_right = 506.0
+margin_right = 504.0
 margin_bottom = 936.0
 rect_min_size = Vector2( 0, 50 )
 script = ExtResource( 7 )
@@ -141,7 +148,7 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 100, 0 )
 texture = ExtResource( 2 )
 expand = true
-stretch_mode = 5
+stretch_mode = 6
 
 [node name="NextRoundBtn" type="TextureButton" parent="MarginContainer/Dice"]
 margin_left = 104.0
@@ -150,14 +157,14 @@ margin_bottom = 100.0
 rect_min_size = Vector2( 400, 100 )
 texture_normal = ExtResource( 4 )
 expand = true
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="DiceRollAudio" type="AudioStreamPlayer" parent="MarginContainer/Dice"]
 stream = ExtResource( 12 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
-margin_right = 506.0
+margin_right = 504.0
 margin_bottom = 936.0
 color = Color( 1, 1, 1, 0.423529 )
 
