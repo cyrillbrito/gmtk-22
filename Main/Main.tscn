@@ -55,10 +55,10 @@ scale = Vector2( 0.3, 0.3 )
 
 [node name="alertsLabel" type="Label" parent="."]
 modulate = Color( 0, 0, 0, 1 )
-margin_left = 28.0
-margin_top = 30.0
-margin_right = 464.0
-margin_bottom = 256.0
+margin_left = 26.3889
+margin_top = 27.7778
+margin_right = 462.389
+margin_bottom = 253.778
 rect_min_size = Vector2( 300, 150 )
 custom_fonts/font = ExtResource( 9 )
 text = "PlaceHolder"

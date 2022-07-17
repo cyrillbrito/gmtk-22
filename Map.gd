@@ -183,6 +183,7 @@ func mouseClick(mousePos: Vector2):
 			mainNode.RemoveResources(priceWood, priceStone, priceGem, priceMana)
 			mainNode.AddAlert("Bought " + itemName)
 			shopScene.UpdateShop(itemName)
+			$BuildAudio.play()
 			cancelPlacement()
 			
 		else:

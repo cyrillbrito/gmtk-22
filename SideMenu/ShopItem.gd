@@ -48,6 +48,7 @@ func setPrice():
 		get_node("HBoxContainer2/VBoxContainer/Price").add_child(manaIconScene)
 
 func _on_TextureButton_pressed():
+	$BuyAudio.play()
 	if Building == '':
 		mainScene.AddAlert("Bought " + ItemName)
 		shopScene.UpdateShop(ItemName)

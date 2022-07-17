@@ -9,6 +9,7 @@ func _ready():
 	random.randomize()
 
 func roll():
+	$DiceRollAudio.play()
 	mainNode.AddAlert('Rolling Dice...')
 	yield(get_tree().create_timer(2), "timeout")
 	var diceValue = UniqueRool()

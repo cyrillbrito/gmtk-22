@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
+[ext_resource path="res://assets/Sounds/Build.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/TheSet.tres" type="TileSet" id=2]
 [ext_resource path="res://Map.gd" type="Script" id=11]
 
@@ -64,3 +65,6 @@ cell_size = Vector2( 282, 162 )
 cell_quadrant_size = 1
 cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
 format = 1
+
+[node name="BuildAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://SideMenu/ResourceIcon&Quantity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Dice/Dice2.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/Ui Assets/Box1.png" type="Texture" id=9]
 [ext_resource path="res://assets/Ui Assets/Box21.png" type="Texture" id=10]
 [ext_resource path="res://assets/Font/LargeFont.tres" type="DynamicFont" id=11]
+[ext_resource path="res://assets/Sounds/DiceRoll.wav" type="AudioStream" id=12]
 
 [node name="GUI" type="MarginContainer"]
 anchor_right = 1.0
@@ -114,7 +115,7 @@ rect_min_size = Vector2( 430, 170 )
 [node name="DayLabel" type="Label" parent="MarginContainer"]
 modulate = Color( 0, 0, 0, 1 )
 margin_top = 806.0
-margin_right = 500.0
+margin_right = 1200.0
 margin_bottom = 832.0
 rect_min_size = Vector2( 200, 20 )
 custom_fonts/font = ExtResource( 11 )
@@ -144,6 +145,9 @@ rect_min_size = Vector2( 400, 100 )
 texture_normal = ExtResource( 4 )
 expand = true
 stretch_mode = 4
+
+[node name="DiceRollAudio" type="AudioStreamPlayer2D" parent="MarginContainer/Dice"]
+stream = ExtResource( 12 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
