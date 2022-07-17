@@ -38,23 +38,23 @@ export var shopItems = [
 		name = "Wood Harvester",
 		description = "Receive wood each day depending on # blocks with wood around it",
 		disabled = false,
-		price = [10,0,0,2],
+		price = [20,0,0,2],
 		imgPath = "res://assets/Buildings/WoodHarvester.png"
 	},
 	{
 		building = 'gather-stone',
 		name = "Stone Harvester",
 		description = "Receive stone each day depending on # blocks with stone around it",
-		disabled = false,
-		price = [20,15,0,2],
+		disabled = true,
+		price = [30,15,0,2],
 		imgPath = "res://assets/Buildings/StoneHarvester.png"
 	},
 	{
 		building = 'gather-gem',
 		name = "Gem Harvester",
 		description = "Receive gems each day depending on # blocks with gems around it",
-		disabled = false,
-		price = [30,20,10,2],
+		disabled = true,
+		price = [40,20,10,2],
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	{
@@ -93,9 +93,11 @@ func UpdateShop(name):
 	if(name == "Upgrade tools"):
 		shopItems[2].disabled = true
 		shopItems[3].disabled = false	
+		shopItems[5].disabled = false	
 		mainNode.toolsLevel= 2
 	if(name == "2nd Upgrade tools"):
 		shopItems[3].disabled = true
+		shopItems[6].disabled = false	
 		mainNode.toolsLevel= 3
 	if(name == "Castle"):
 		shopItems[7].disabled = true
