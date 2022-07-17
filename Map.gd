@@ -169,13 +169,13 @@ func mouseClick(mousePos: Vector2):
 		mainNode.gatherGem()
 	elif mapMatrix[mousePos.x][mousePos.y] == 'gather-wood':
 		var mult = countAround(mousePos, ['wood'])
-		mainNode.gatherWood(mult)
+		mainNode.gatherHarvesterWood(mult)
 	elif mapMatrix[mousePos.x][mousePos.y] == 'gather-stone':
 		var mult = countAround(mousePos, ['stone'])
-		mainNode.gatherStone(mult)
+		mainNode.gatherHarvesterStone(mult)
 	elif mapMatrix[mousePos.x][mousePos.y] == 'gather-gem':
 		var mult = countAround(mousePos, ['gem'])
-		mainNode.gatherGem(mult)
+		mainNode.gatherHarvesterGem(mult)
 
 func mouseMove(mousePos: Vector2):
 	var cell
