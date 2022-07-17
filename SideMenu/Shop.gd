@@ -4,57 +4,57 @@ export var shopItems = [
 	{
 		building = 'road',
 		name = "Road",
-		description = "This will allow to build other buildings",
+		description = "Expand our kindom using roads, all buildings need to be connected",
 		disabled = false,
-		price = [2,1,0,1],
+		price = [5,3,0,1],
 		imgPath = "res://assets/Buildings/Road.png"
 	},
 	{
 		building = 'workshop',
 		name = "Workshop",
-		description = "This building will allow you to upgrade your tools",
+		description = "Allows you to upgrade your tools",
 		disabled = false,
-		price = [3,0,0,1],
+		price = [10,0,0,2],
 		imgPath = "res://assets/Buildings/Workshop.png"
 	},
 	{
 		building = "",
 		name = "Upgrade tools",
-		description = "Allows to break Stone",
+		description = "Allows you to break Stone and increases the wood harvest",
 		disabled = true,
-		price = [3,0,0,2],
+		price = [5,0,0,2],
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	{
 		building = "",
 		name = "2nd Upgrade tools",
-		description = "Allows to break Gem",
+		description = "Allows to break Gems and increases the harvest of other resources",
 		disabled = true,
-		price = [3,1,0,2],
+		price = [20,10,0,2],
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	 {
 		building = 'gather-wood',
 		name = "Wood Harvester",
-		description = "This building will allow you harvest all wood surrounding it",
+		description = "Receive wood each day depending on # blocks with wood around it",
 		disabled = false,
-		price = [3,1,0,2],
+		price = [10,0,0,2],
 		imgPath = "res://assets/Buildings/WoodHarvester.png"
 	},
 	{
 		building = 'gather-stone',
 		name = "Stone Harvester",
-		description = "This building will allow you harvest all stone surrounding it",
+		description = "Receive stone each day depending on # blocks with stone around it",
 		disabled = false,
-		price = [10,5,0,2],
+		price = [20,15,0,2],
 		imgPath = "res://assets/Buildings/StoneHarvester.png"
 	},
 	{
 		building = 'gather-gem',
 		name = "Gem Harvester",
-		description = "This building will allow you harvest all gem surrounding it",
+		description = "Receive gems each day depending on # blocks with gems around it",
 		disabled = false,
-		price = [20,10,5,2],
+		price = [30,20,10,2],
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	{
@@ -62,7 +62,7 @@ export var shopItems = [
 		name = "Castle",
 		description = "...",
 		disabled = false,
-		price = [1,1,1,1],
+		price = [100,50,30,4],
 		# price = [100,50,20,4],
 		imgPath = "res://assets/Buildings/castle.png"
 	},
