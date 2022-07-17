@@ -17,39 +17,6 @@ export var shopItems = [
 		price = [3,0,0,1],
 		imgPath = "res://assets/Buildings/Workshop.png"
 	},
-	 {
-		building = 'gather-wood',
-		name = "Wood Harvester",
-		description = "This building will allow you harvest all wood surrounding it",
-		disabled = false,
-		price = [3,1,0,2],
-		imgPath = "res://assets/Buildings/WoodHarvester.png"
-	},
-	{
-		building = 'gather-wood',
-		name = "Stone Harvester",
-		description = "This building will allow you harvest all stone surrounding it",
-		disabled = false,
-		price = [3,1,0,2],
-		imgPath = "res://assets/Buildings/StoneHarvester.png"
-	},
-	{
-		building = 'gather-gem',
-		name = "Gem Harvester",
-		description = "This building will allow you harvest all gem surrounding it",
-		disabled = false,
-		price = [3,1,2,2],
-		imgPath = "res://assets/Buildings/GemHarvester.png"
-	},
-	{
-		building = 'house',
-		name = "Castle",
-		description = "...",
-		disabled = false,
-		price = [1,1,1,1],
-		# price = [100,50,20,4],
-		imgPath = "res://assets/Buildings/GemHarvester.png"
-	},
 	{
 		building = "",
 		name = "Upgrade tools",
@@ -64,6 +31,39 @@ export var shopItems = [
 		description = "Allows to break Gem",
 		disabled = true,
 		price = [3,1,2,2],
+		imgPath = "res://assets/Buildings/GemHarvester.png"
+	},
+	 {
+		building = 'gather-wood',
+		name = "Wood Harvester",
+		description = "This building will allow you harvest all wood surrounding it",
+		disabled = false,
+		price = [3,1,0,2],
+		imgPath = "res://assets/Buildings/WoodHarvester.png"
+	},
+	{
+		building = 'gather-stone',
+		name = "Stone Harvester",
+		description = "This building will allow you harvest all stone surrounding it",
+		disabled = false,
+		price = [3,1,0,2],
+		imgPath = "res://assets/Buildings/StoneHarvester.png"
+	},
+	{
+		building = 'gather-gem',
+		name = "Gem Harvester",
+		description = "This building will allow you harvest all gem surrounding it",
+		disabled = false,
+		price = [3,1,2,2],
+		imgPath = "res://assets/Buildings/castle.png"
+	},
+	{
+		building = 'house',
+		name = "Castle",
+		description = "...",
+		disabled = false,
+		price = [1,1,1,1],
+		# price = [100,50,20,4],
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 ]
@@ -88,11 +88,11 @@ func UpdateShop(name):
 	var shopItems = get_node("VBoxContainer/TextureRect/ScrollContainer/VBoxContainer").get_children()
 	if(name == "Workshop"):
 		shopItems[1].disabled = true
-		shopItems[5].disabled = false
+		shopItems[2].disabled = false
 	if(name == "Upgrade tools"):
-		shopItems[5].disabled = true
-		shopItems[6].disabled = false	
+		shopItems[2].disabled = true
+		shopItems[3].disabled = false	
 		mainNode.toolsLevel= 2
 	if(name == "2nd Upgrade tools"):
-		shopItems[6].disabled = true
+		shopItems[3].disabled = true
 		mainNode.toolsLevel= 3
