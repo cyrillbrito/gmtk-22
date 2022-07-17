@@ -54,26 +54,56 @@ func Buy(_wood, _stone, _gem, _mana, building):
 		$Map.placeBuilding(building)
 
 
-func gatherWood(multiplier = 1):
-	wood += yield(preGather(1, multiplier), 'completed')
+func gatherWood():
+	var arr = yield(preGather(1), 'completed')
+	if arr:
+		wood += arr[0] + arr[1]
+		AddAlert('You collected ' + str(arr[0]) + ' wood manually, plus ' + str(arr[1]) + ' from the roll')
 
-func gatherStone(multiplier = 1):
-	stone += yield(preGather(2, multiplier), 'completed')
+func gatherStone():
+	var arr = yield(preGather(2), 'completed')
+	if arr:
+		wood += arr[0] + arr[1]
+		AddAlert('You collected ' + str(arr[0]) + ' wood manually, plus ' + str(arr[1]) + ' from the roll')
 
-func gatherGem(multiplier = 1):
-	gem += yield(preGather(3, multiplier), 'completed')
+func gatherGem():
+	var arr = yield(preGather(3), 'completed')
+	AddAlert('You collected ' + str(arr[0]) + ' wood manually, plus ' + str(arr[1]) + ' from the roll')
+	if arr:
+		wood += arr[0] + arr[1]
 
-func preGather(reqTool, multiplier):
+func gatherHarvesterWood(multiplier):
+	var arr = yield(preGather(1), 'completed')
+	if arr:
+		wood += arr[0] * multiplier + arr[1]
+		AddAlert('You collected ' + str(arr[0]) + ' * ' + str(multiplier) + ' wood from the harvester, plus ' + str(arr[1]) + ' from the roll')
+
+func gatherHarvesterStone(multiplier):
+	var arr = yield(preGather(2), 'completed')
+	if arr:
+		stone += arr[0] * multiplier + arr[1]
+		AddAlert('You collected ' + str(arr[0]) + ' * ' + str(multiplier) + ' stone from the harvester, plus ' + str(arr[1]) + ' from the roll')
+
+func gatherHarvesterGem(multiplier):
+	var arr = yield(preGather(3), 'completed')
+	if arr:
+		gem += arr[0] * multiplier + arr[1]
+		AddAlert('You collected ' + str(arr[0]) + ' * ' + str(multiplier) + ' gems from the harvester, plus ' + str(arr[1]) + ' from the roll')
+
+func preGather(reqTool):
 	if gameState != StateEnum.unblocked:
 		AddAlert('Dice already rolling!')
+		yield()
 		return 0
 
 	if toolsLevel < reqTool:
 		AddAlert('You need to upgrade your tools to gather this resource.')
+		yield()
 		return 0
 
 	if mana < 1:
 		AddAlert('You need at least 1 mana.')
+		yield()
 		return 0
 
 	gameState = StateEnum.rolling
@@ -81,7 +111,9 @@ func preGather(reqTool, multiplier):
 	var dice = get_node("SideMenu/MarginContainer/Dice")
 	var roll = yield(dice.roll(), 'completed')
 	gameState = StateEnum.unblocked
-	return ((toolsLevel + 1 - reqTool) * 5) * multiplier + roll
+	var baseValue = (toolsLevel + 1 - reqTool) * 5;
+	return [baseValue, roll]
+
 
 func FinishGame():
 		var endGame = load("res://EndGame/EndGame.tscn").instance()
