@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Dice.png-6ded7d79bf409f94e5b4880950311df6.stex"
+path="res://.import/BoxEndGame.png-2f0e369e49af1469883bf41b01487f22.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Ui Assets/Dice.png"
-dest_files=[ "res://.import/Dice.png-6ded7d79bf409f94e5b4880950311df6.stex" ]
+source_file="res://assets/Ui Assets/BoxEndGame.png"
+dest_files=[ "res://.import/BoxEndGame.png-2f0e369e49af1469883bf41b01487f22.stex" ]
 
 [params]
 

@@ -1,50 +1,72 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/Ui Assets/btn.png" type="Texture" id=1]
 [ext_resource path="res://EndGame/EndGame.gd" type="Script" id=2]
 [ext_resource path="res://assets/Sounds/Win.mp3" type="AudioStream" id=3]
 [ext_resource path="res://assets/Sounds/GameOver.mp3" type="AudioStream" id=4]
+[ext_resource path="res://assets/Ui Assets/BoxEndGame.png" type="Texture" id=5]
+[ext_resource path="res://assets/Font/LargeFont.tres" type="DynamicFont" id=6]
 
-[node name="EndGame" type="TextureRect"]
+[node name="EndGame" type="Container"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 1131.0
+margin_bottom = 720.0
 script = ExtResource( 2 )
 
-[node name="MarginContainer" type="VBoxContainer" parent="."]
-margin_right = 1200.0
-margin_bottom = 700.0
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0.631373 )
+margin_right = 2264.0
+margin_bottom = 1225.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 250.0
+margin_top = 150.0
+margin_right = 970.0
+margin_bottom = 950.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 5
+
+[node name="MarginContainer" type="VBoxContainer" parent="TextureRect"]
+margin_left = -15.0
+margin_top = 10.0
+margin_right = 727.0
+margin_bottom = 648.0
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer"]
-margin_top = 278.0
-margin_right = 1200.0
-margin_bottom = 309.0
+[node name="Label" type="Label" parent="TextureRect/MarginContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_top = 235.0
+margin_right = 742.0
+margin_bottom = 290.0
+custom_fonts/font = ExtResource( 6 )
 text = "Great Game!
-You finisih the game"
+You finisih the game\\n"
 align = 1
 
-[node name="Container" type="CenterContainer" parent="MarginContainer"]
-margin_top = 313.0
-margin_right = 1200.0
-margin_bottom = 365.0
+[node name="Container" type="CenterContainer" parent="TextureRect/MarginContainer"]
+margin_top = 294.0
+margin_right = 742.0
+margin_bottom = 346.0
 
-[node name="PlayAgain" type="TextureButton" parent="MarginContainer/Container"]
-margin_left = 503.0
-margin_right = 696.0
+[node name="PlayAgain" type="TextureButton" parent="TextureRect/MarginContainer/Container"]
+margin_left = 274.0
+margin_right = 467.0
 margin_bottom = 52.0
 rect_pivot_offset = Vector2( -26.825, -100.219 )
 size_flags_horizontal = 5
 size_flags_vertical = 5
 texture_normal = ExtResource( 1 )
 
-[node name="Container2" type="CenterContainer" parent="MarginContainer"]
-margin_top = 369.0
-margin_right = 1200.0
-margin_bottom = 421.0
+[node name="Container2" type="CenterContainer" parent="TextureRect/MarginContainer"]
+margin_top = 350.0
+margin_right = 742.0
+margin_bottom = 402.0
 
-[node name="Continue" type="TextureButton" parent="MarginContainer/Container2"]
-margin_left = 503.0
-margin_right = 696.0
+[node name="Continue" type="TextureButton" parent="TextureRect/MarginContainer/Container2"]
+margin_left = 274.0
+margin_right = 467.0
 margin_bottom = 52.0
 rect_pivot_offset = Vector2( -26.825, -100.219 )
 size_flags_horizontal = 5
@@ -57,5 +79,5 @@ stream = ExtResource( 3 )
 [node name="GameOverAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 
-[connection signal="pressed" from="MarginContainer/Container/PlayAgain" to="." method="_on_PlayAgain_pressed"]
-[connection signal="pressed" from="MarginContainer/Container2/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/Container/PlayAgain" to="." method="_on_PlayAgain_pressed"]
+[connection signal="pressed" from="TextureRect/MarginContainer/Container2/Continue" to="." method="_on_Continue_pressed"]

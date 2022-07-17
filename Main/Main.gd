@@ -1,6 +1,6 @@
 extends Node2D
 
-enum StateEnum {rolling, blocked, unblocked, placing}
+enum StateEnum {rolling, blocked, unblocked}
 var gameRound = 1
 var maxRounds = 5
 
@@ -54,7 +54,7 @@ func CanBuy(_wood, _stone, _gem, _mana):
 	return wood >= _wood && stone >= _stone && gem >= _gem  && mana >= _mana
 	
 func Buy(_wood, _stone, _gem, _mana, building, itemName):
-	if(building != null):
+	if(building != ""):
 		gameState = StateEnum.blocked
 		$Map.placeBuilding(building, _wood, _stone, _gem, _mana, itemName)
 	else: 
@@ -126,4 +126,5 @@ func FinishGame(won):
 	var endGame = load("res://EndGame/EndGame.tscn").instance()
 	if won:
 		endGame.wonInTurns = gameRound
-	self.add_child(endGame)
+	add_child(endGame)
+	move_child(endGame, 100)
