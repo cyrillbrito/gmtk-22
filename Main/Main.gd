@@ -13,17 +13,36 @@ export var toolsLevel = 1
 export var gameState = StateEnum.unblocked
 export var alerts = ['Game Started...']
 
+
+var goDark = false
+var currColor = 1
+
 func _ready():
 	$SideMenu.maxDays = maxRounds
+	
 
 func _process(delta):
 	SetResources()
 	SetAlerts()
+	
+	if goDark:
+		currColor -= delta
+	elif currColor < 1:
+		currColor += delta
+	else :
+		currColor = 1
+	modulate = Color(currColor, currColor, currColor)
 
 func NextRound():
 	if maxRounds == gameRound:
 		FinishGame(false)
 		return
+	
+	goDark = true
+	yield(get_tree().create_timer(.7), "timeout")
+	goDark = false
+	yield(get_tree().create_timer(.7), "timeout")
+	
 	gameRound+=1
 	$SideMenu.day = gameRound
 	mana = 4
