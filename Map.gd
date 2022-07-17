@@ -152,7 +152,7 @@ func _input(event):
 		return
 
 	var mousePos = tileMap.world_to_map(tileMap.to_local(event.position))
-	if mousePos.x < 0 || mousePos.x > 10 || mousePos.y < -10 || mousePos.y > 0 || (mousePos.x == 1 && mousePos.y == -1):
+	if mousePos.x < 0 || mousePos.x > 10 || mousePos.y < -10 || mousePos.y > 0:
 		return
 
 	tileMap2.clear()
@@ -197,15 +197,6 @@ func mouseClick(mousePos: Vector2):
 		mainNode.gatherStone()
 	elif mapMatrix[mousePos.x][mousePos.y] == 'gem':
 		mainNode.gatherGem()
-	elif mapMatrix[mousePos.x][mousePos.y] == 'gather-wood':
-		var mult = countAround(mousePos, ['wood'])
-		mainNode.gatherHarvesterWood(mult)
-	elif mapMatrix[mousePos.x][mousePos.y] == 'gather-stone':
-		var mult = countAround(mousePos, ['stone'])
-		mainNode.gatherHarvesterStone(mult)
-	elif mapMatrix[mousePos.x][mousePos.y] == 'gather-gem':
-		var mult = countAround(mousePos, ['gem'])
-		mainNode.gatherHarvesterGem(mult)
 
 func mouseMove(mousePos: Vector2):
 	var cell
@@ -213,7 +204,7 @@ func mouseMove(mousePos: Vector2):
 		tileMap3.set_cellv(mousePos, typeNumberDict[placing])
 	else:
 		cell = tileMap.get_cellv(mousePos)
-		if cell != -1 && cell != 8 && cell != 18 && cell != 20:
+		if cell in [12, 13, 14]:
 			tileMap2.set_cellv(mousePos, cell)
 
 func placeBuilding(building, _wood, _stone, _gem, _mana, name):
