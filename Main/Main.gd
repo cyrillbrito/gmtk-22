@@ -169,6 +169,6 @@ func preGather(reqTool):
 func FinishGame(won):
 	var endGame = load("res://EndGame/EndGame.tscn").instance()
 	if won:
-		endGame.wonInTurns = gameRound
+		endGame.get_node('EndGame').wonInTurns = gameRound
 	add_child(endGame)
 	move_child(endGame, 100)

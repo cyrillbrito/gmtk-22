@@ -60,9 +60,9 @@ export var shopItems = [
 	{
 		building = 'castle',
 		name = "Castle",
-		description = "...",
+		description = "Build this castle in the sandy area to win the game",
 		disabled = false,
-		price = [100,50,30,4],
+		price = [100,50,30,3],
 		# price = [100,50,20,4],
 		imgPath = "res://assets/Buildings/castle.png"
 	},

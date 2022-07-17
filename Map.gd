@@ -184,8 +184,10 @@ func mouseClick(mousePos: Vector2):
 			mainNode.AddAlert("Bought " + itemName)
 			shopScene.UpdateShop(itemName)
 			$BuildAudio.play()
-			mainNode.gameState = StateEnum.unblocked
-			cancelPlacement()
+			
+			if placing != 'road' || !mainNode.CanBuy(priceWood, priceStone, priceGem, priceMana):
+				mainNode.gameState = StateEnum.unblocked
+				cancelPlacement()
 			
 		else:
 			mainNode.AddWarningAlert('Buildings and roads need to be next to other buildings or roads')
