@@ -115,7 +115,7 @@ rect_min_size = Vector2( 430, 170 )
 [node name="DayLabel" type="Label" parent="MarginContainer"]
 modulate = Color( 0, 0, 0, 1 )
 margin_top = 806.0
-margin_right = 1200.0
+margin_right = 500.0
 margin_bottom = 832.0
 rect_min_size = Vector2( 200, 20 )
 custom_fonts/font = ExtResource( 11 )
@@ -146,7 +146,7 @@ texture_normal = ExtResource( 4 )
 expand = true
 stretch_mode = 4
 
-[node name="DiceRollAudio" type="AudioStreamPlayer2D" parent="MarginContainer/Dice"]
+[node name="DiceRollAudio" type="AudioStreamPlayer" parent="MarginContainer/Dice"]
 stream = ExtResource( 12 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
