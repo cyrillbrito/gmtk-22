@@ -2,6 +2,7 @@ extends Node2D
 
 enum StateEnum {rolling, blocked, unblocked}
 var gameRound = 1
+var maxRounds = 5
 
 var wood = 50
 var stone = 10
@@ -12,12 +13,17 @@ export var toolsLevel = 1
 export var gameState = StateEnum.unblocked
 export var alerts = ['Game Started...']
 
+func _ready():
+	$SideMenu.maxDays = maxRounds
 
 func _process(delta):
 	SetResources()
 	SetAlerts()
 
 func NextRound():
+	if maxRounds == gameRound:
+		FinishGame(false)
+		return
 	gameRound+=1
 	$SideMenu.day = gameRound
 	mana += 5
@@ -116,6 +122,8 @@ func preGather(reqTool):
 	return [baseValue, roll]
 
 
-func FinishGame():
-		var endGame = load("res://EndGame/EndGame.tscn").instance()
-		self.add_child(endGame)
+func FinishGame(won):
+	var endGame = load("res://EndGame/EndGame.tscn").instance()
+	if won:
+		endGame.wonInTurns = gameRound
+	self.add_child(endGame)

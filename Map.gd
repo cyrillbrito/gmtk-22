@@ -24,9 +24,10 @@ func _ready():
 	rng.randomize()
 
 	# Create empty matrix
-	for x in range(11):
+	# One bigger than need to avoid errors when acesing
+	for x in range(12):
 		mapMatrix.append([])
-		for y in range(11):
+		for y in range(12):
 			mapMatrix[x].append('')
 	
 	# Stage 1 fill
@@ -104,7 +105,8 @@ var typeNumberDict = {
 	'gather-stone': 16,
 	'gather-wood': 17,
 	'workshop': 18,
-	'road': 8
+	'road': 8,
+	'castle': 20,
 }
 
 func setMatrix(x, y, type):
@@ -135,6 +137,7 @@ func canBuild(v):
 		'gather-stone',
 		'gather-gem',
 		'workshop',
+		'castle',
 	]
 	return 0 < countAround(v, validConnections)
 
@@ -171,14 +174,17 @@ func cancelPlacement():
 func mouseClick(mousePos: Vector2):
 	
 	if placing:
-		if placing == 'house' && (mousePos.x < 8 && mousePos.y > -8):
+		if placing == 'castle' && (mousePos.x < 8 && mousePos.y > -8):
 			mainNode.AddAlert('The castle can only be built on the desert.')
 		elif canBuild(mousePos):
+			if placing == 'castle':
+				mainNode.FinishGame(true)
 			setMatrix(mousePos.x, mousePos.y, placing)
 			mainNode.RemoveResources(priceWood, priceStone, priceGem, priceMana)
 			mainNode.AddAlert("Bought " + itemName)
 			shopScene.UpdateShop(itemName)
 			cancelPlacement()
+			
 		else:
 			mainNode.AddAlert('Buildings and roads need to be next to other buildings or roads')
 		return
@@ -206,7 +212,7 @@ func mouseMove(mousePos: Vector2):
 		tileMap3.set_cellv(mousePos, typeNumberDict[placing])
 	else:
 		cell = tileMap.get_cellv(mousePos)
-		if cell != -1 && cell != 8 && cell != 18:
+		if cell != -1 && cell != 8 && cell != 18 && cell != 20:
 			tileMap2.set_cellv(mousePos, cell)
 
 func placeBuilding(building, _wood, _stone, _gem, _mana, name):

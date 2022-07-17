@@ -58,7 +58,7 @@ export var shopItems = [
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	{
-		building = 'house',
+		building = 'castle',
 		name = "Castle",
 		description = "...",
 		disabled = false,
@@ -95,4 +95,7 @@ func UpdateShop(name):
 		mainNode.toolsLevel= 2
 	if(name == "2nd Upgrade tools"):
 		shopItems[3].disabled = true
+		mainNode.toolsLevel= 3
+	if(name == "Castle"):
+		shopItems[7].disabled = true
 		mainNode.toolsLevel= 3
