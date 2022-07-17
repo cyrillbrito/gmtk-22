@@ -2,12 +2,12 @@ extends Node2D
 
 enum StateEnum {rolling, blocked, unblocked}
 var gameRound = 1
-var maxRounds = 5
+var maxRounds = 15
 
 var wood = 0
 var stone = 0
 var gem = 0
-var mana = 5
+var mana = 4
 
 export var toolsLevel = 1
 export var gameState = StateEnum.unblocked
@@ -26,7 +26,7 @@ func NextRound():
 		return
 	gameRound+=1
 	$SideMenu.day = gameRound
-	mana += 5
+	mana = 4
 	
 	for x in range(11):
 		var row = $Map.mapMatrix[x]
@@ -85,18 +85,21 @@ func Buy(_wood, _stone, _gem, _mana, building, itemName):
 func gatherWood():
 	var arr = yield(preGather(1), 'completed')
 	if arr:
+		mana -= 1
 		wood += arr[0] + arr[1]
 		AddAlert('You collected ' + str(arr[0]) + ' wood manually, plus ' + str(arr[1]) + ' from the roll')
 
 func gatherStone():
 	var arr = yield(preGather(2), 'completed')
 	if arr:
+		mana -= 1
 		stone += arr[0] + arr[1]
 		AddAlert('You collected ' + str(arr[0]) + ' stone manually, plus ' + str(arr[1]) + ' from the roll')
 
 func gatherGem():
 	var arr = yield(preGather(3), 'completed')
 	if arr:
+		mana -= 1
 		gem += arr[0] + arr[1]
 		AddAlert('You collected ' + str(arr[0]) + ' gem manually, plus ' + str(arr[1]) + ' from the roll')
 
@@ -137,7 +140,6 @@ func preGather(reqTool):
 		return 0
 
 	gameState = StateEnum.rolling
-	mana -= 1
 	var dice = get_node("SideMenu/MarginContainer/Dice")
 	var roll = yield(dice.roll(), 'completed')
 	gameState = StateEnum.unblocked
