@@ -2,7 +2,7 @@ extends Node2D
 
 enum StateEnum {rolling, blocked, unblocked}
 var gameRound = 1
-var maxRounds = 15
+var maxRounds = 10
 
 var wood = 0
 var stone = 0
