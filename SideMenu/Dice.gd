@@ -9,8 +9,15 @@ func _ready():
 	random.randomize()
 
 func roll():
-	var diceValue = random.randi_range(1, 6)
 	mainNode.AddAlert('Rolling Dice...')
 	yield(get_tree().create_timer(2), "timeout")
-	# mainNode.AddAlert('Rolled a ' + str(diceValue))
+	var diceValue = UniqueRool()
 	return diceValue
+
+func UniqueRool():
+	var diceValue = random.randi_range(1, 6)
+	SetDiceUi(diceValue)
+	return diceValue
+
+func SetDiceUi(number):
+	$Dice.texture = load('res://assets/Dice/Dice'+str(number)+'.png')
