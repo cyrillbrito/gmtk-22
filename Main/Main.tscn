@@ -20,22 +20,22 @@ scale = Vector2( 0.653433, 0.768433 )
 texture = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="Background"]
-position = Vector2( -918.046, 299.656 )
+position = Vector2( 85.3252, -403.896 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
 [node name="Sprite2" type="Sprite" parent="Background"]
-position = Vector2( 200.434, 349.107 )
+position = Vector2( 146.002, 455.566 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 6 )
 
 [node name="Sprite3" type="Sprite" parent="Background"]
-position = Vector2( 98.7542, -409.579 )
+position = Vector2( -1086.06, 425.118 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 7 )
 
 [node name="Sprite4" type="Sprite" parent="Background"]
-position = Vector2( -857.038, 458.42 )
+position = Vector2( -973.161, 483.106 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 8 )
 
@@ -50,8 +50,8 @@ margin_right = 1667.0
 margin_bottom = 948.0
 
 [node name="Map" parent="." instance=ExtResource( 3 )]
-position = Vector2( 200, 450 )
-scale = Vector2( 0.3, 0.3 )
+position = Vector2( 64.3447, 540.045 )
+scale = Vector2( 0.35, 0.35 )
 
 [node name="alertsLabel" type="Label" parent="."]
 modulate = Color( 0, 0, 0, 1 )

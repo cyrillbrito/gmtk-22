@@ -27,6 +27,21 @@ func NextRound():
 	gameRound+=1
 	$SideMenu.day = gameRound
 	mana += 5
+	
+	for x in range(11):
+		var row = $Map.mapMatrix[x]
+		for y in range(11):
+			var cell = row[-y]
+			if cell == 'gather-wood':
+				var mult = $Map.countAround(Vector2(x, -y), ['wood'])
+				yield(gatherHarvesterWood(mult), 'completed')
+			elif cell == 'gather-stone':
+				var mult = $Map.countAround(Vector2(x, -y), ['stone'])
+				yield(gatherHarvesterStone(mult), 'completed')
+			elif cell == 'gather-gem':
+				var mult = $Map.countAround(Vector2(x, -y), ['gem'])
+				yield(gatherHarvesterGem(mult), 'completed')
+
 
 func SetAlerts():
 	$alertsLabel.text = ""
@@ -52,7 +67,7 @@ func RemoveResources(_wood, _stone, _gem, _mana):
 	
 func CanBuy(_wood, _stone, _gem, _mana):
 	return wood >= _wood && stone >= _stone && gem >= _gem  && mana >= _mana
-	
+
 func Buy(_wood, _stone, _gem, _mana, building, itemName):
 	if(building != ""):
 		gameState = StateEnum.blocked
