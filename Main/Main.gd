@@ -1,12 +1,12 @@
 extends Node2D
 
-enum StateEnum {rolling, blocked, unblocked}
+enum StateEnum {rolling, blocked, unblocked, placing}
 var gameRound = 1
 var maxRounds = 5
 
-var wood = 50
-var stone = 10
-var gem = 10
+var wood = 0
+var stone = 0
+var gem = 0
 var mana = 5
 
 export var toolsLevel = 1
@@ -85,14 +85,14 @@ func gatherWood():
 func gatherStone():
 	var arr = yield(preGather(2), 'completed')
 	if arr:
-		wood += arr[0] + arr[1]
-		AddAlert('You collected ' + str(arr[0]) + ' wood manually, plus ' + str(arr[1]) + ' from the roll')
+		stone += arr[0] + arr[1]
+		AddAlert('You collected ' + str(arr[0]) + ' stone manually, plus ' + str(arr[1]) + ' from the roll')
 
 func gatherGem():
 	var arr = yield(preGather(3), 'completed')
-	AddAlert('You collected ' + str(arr[0]) + ' wood manually, plus ' + str(arr[1]) + ' from the roll')
 	if arr:
-		wood += arr[0] + arr[1]
+		gem += arr[0] + arr[1]
+		AddAlert('You collected ' + str(arr[0]) + ' gem manually, plus ' + str(arr[1]) + ' from the roll')
 
 func gatherHarvesterWood(multiplier):
 	var arr = yield(preGather(1), 'completed')
