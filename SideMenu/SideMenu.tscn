@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://SideMenu/ResourceIcon&Quantity.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Ui Assets/Dice.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/Ui Assets/Box2.png" type="Texture" id=8]
 [ext_resource path="res://assets/Ui Assets/Box1.png" type="Texture" id=9]
 [ext_resource path="res://assets/Ui Assets/Box21.png" type="Texture" id=10]
+[ext_resource path="res://assets/Font/LargeFont.tres" type="DynamicFont" id=11]
 
 [node name="GUI" type="MarginContainer"]
 anchor_right = 1.0
@@ -18,11 +19,11 @@ margin_bottom = 200.0
 script = ExtResource( 3 )
 
 [node name="MarginContainer" type="VBoxContainer" parent="."]
-margin_right = 1024.0
-margin_bottom = 930.0
+margin_right = 1200.0
+margin_bottom = 936.0
 
 [node name="Resourses" type="TextureRect" parent="MarginContainer"]
-margin_right = 1024.0
+margin_right = 1200.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 500, 150 )
 texture = ExtResource( 9 )
@@ -72,7 +73,7 @@ type = 3
 
 [node name="Shop" type="TextureRect" parent="MarginContainer"]
 margin_top = 154.0
-margin_right = 1024.0
+margin_right = 1200.0
 margin_bottom = 802.0
 texture = ExtResource( 8 )
 script = ExtResource( 5 )
@@ -93,9 +94,9 @@ expand = true
 stretch_mode = 4
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Shop/VBoxContainer"]
-margin_top = 100.0
+margin_top = 104.0
 margin_right = 455.0
-margin_bottom = 600.0
+margin_bottom = 604.0
 rect_min_size = Vector2( 455, 500 )
 texture = ExtResource( 10 )
 expand = true
@@ -111,17 +112,19 @@ rect_min_size = Vector2( 430, 170 )
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Shop/VBoxContainer/TextureRect/ScrollContainer"]
 
 [node name="DayLabel" type="Label" parent="MarginContainer"]
+modulate = Color( 0, 0, 0, 1 )
 margin_top = 806.0
-margin_right = 1024.0
-margin_bottom = 826.0
+margin_right = 1200.0
+margin_bottom = 832.0
 rect_min_size = Vector2( 200, 20 )
+custom_fonts/font = ExtResource( 11 )
 text = "Day 1 / 10"
 align = 1
 
 [node name="Dice" type="HBoxContainer" parent="MarginContainer"]
-margin_top = 830.0
-margin_right = 1024.0
-margin_bottom = 930.0
+margin_top = 836.0
+margin_right = 1200.0
+margin_bottom = 936.0
 rect_min_size = Vector2( 0, 50 )
 script = ExtResource( 7 )
 
@@ -144,8 +147,8 @@ stretch_mode = 4
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
-margin_right = 1024.0
-margin_bottom = 930.0
+margin_right = 1200.0
+margin_bottom = 936.0
 color = Color( 1, 1, 1, 0.423529 )
 
 [connection signal="pressed" from="MarginContainer/Dice/NextRoundBtn" to="." method="_on_NextRoundBtn_pressed"]

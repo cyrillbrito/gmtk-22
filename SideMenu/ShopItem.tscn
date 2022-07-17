@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://SideMenu/ShopItem.gd" type="Script" id=1]
 [ext_resource path="res://assets/Buildings/GemHarvester.png" type="Texture" id=2]
 [ext_resource path="res://assets/Ui Assets/BuyBtn.png" type="Texture" id=3]
 [ext_resource path="res://assets/Ui Assets/BuyBtnDisabled.png" type="Texture" id=4]
+[ext_resource path="res://assets/Font/LargeFont.tres" type="DynamicFont" id=5]
 
 [node name="ShopItem" type="Control"]
 anchor_right = 1.0
@@ -39,10 +40,11 @@ rect_min_size = Vector2( 50, 50 )
 
 [node name="Name" type="Label" parent="HBoxContainer2/VBoxContainer/HBoxContainer"]
 modulate = Color( 0, 0, 0, 1 )
-margin_top = 18.0
+margin_top = 12.0
 margin_right = 250.0
-margin_bottom = 32.0
+margin_bottom = 38.0
 rect_min_size = Vector2( 250, 0 )
+custom_fonts/font = ExtResource( 5 )
 text = "Wood Harvester"
 
 [node name="BuyBtn" type="TextureButton" parent="HBoxContainer2/VBoxContainer/HBoxContainer"]
