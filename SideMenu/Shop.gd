@@ -73,10 +73,10 @@ func _ready():
 			scene.ManaPrice = key.price[3]
 			scene.imgPath = key.imgPath
 			scene.disabled = key.disabled
-			get_node("VBoxContainer/ScrollContainer/VBoxContainer/").add_child(scene)
+			get_node("VBoxContainer/TextureRect/ScrollContainer/VBoxContainer").add_child(scene)
 	
 func UpdateShop(name):
-	var shopItems = get_node("VBoxContainer/ScrollContainer/VBoxContainer/").get_children()
+	var shopItems = get_node("VBoxContainer/TextureRect/ScrollContainer/VBoxContainer").get_children()
 	if(name == "Workshop"):
 		shopItems[1].disabled = true
 		shopItems[5].disabled = false

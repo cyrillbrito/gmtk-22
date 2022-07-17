@@ -52,7 +52,7 @@ position = Vector2( 200, 350 )
 scale = Vector2( 0.25, 0.25 )
 
 [node name="alertsLabel" type="Label" parent="."]
-visible = false
+modulate = Color( 0, 0, 0, 1 )
 margin_right = 300.0
 margin_bottom = 150.0
 rect_min_size = Vector2( 300, 150 )
