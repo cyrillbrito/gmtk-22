@@ -55,7 +55,7 @@ export var shopItems = [
 		description = "This building will allow you harvest all gem surrounding it",
 		disabled = false,
 		price = [3,1,2,2],
-		imgPath = "res://assets/Buildings/castle.png"
+		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	{
 		building = 'house',
@@ -64,7 +64,7 @@ export var shopItems = [
 		disabled = false,
 		price = [1,1,1,1],
 		# price = [100,50,20,4],
-		imgPath = "res://assets/Buildings/GemHarvester.png"
+		imgPath = "res://assets/Buildings/castle.png"
 	},
 ]
 
