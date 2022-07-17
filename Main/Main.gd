@@ -33,10 +33,10 @@ func AddAlert(newAlert):
 	alerts.append(newAlert)
 	
 func SetResources():
-	get_node("SideMenu/MarginContainer/Resources/Wood/Quantity").text = str(wood)
-	get_node("SideMenu/MarginContainer/Resources/Stone/Quantity").text = str(stone)
-	get_node("SideMenu/MarginContainer/Resources/Gem/Quantity").text = str(gem)
-	get_node("SideMenu/MarginContainer/Resources/Mana/Quantity").text = str(mana)
+	get_node("SideMenu/MarginContainer/Resourses/Resources/Wood/Quantity").text = str(wood)
+	get_node("SideMenu/MarginContainer/Resourses/Resources/Stone/Quantity").text = str(stone)
+	get_node("SideMenu/MarginContainer/Resourses/Resources/Gem/Quantity").text = str(gem)
+	get_node("SideMenu/MarginContainer/Resourses/Resources/Mana/Quantity").text = str(mana)
 	
 func RemoveResources(_wood, _stone, _gem, _mana):
 	wood -= _wood

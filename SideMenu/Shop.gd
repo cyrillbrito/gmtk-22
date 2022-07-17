@@ -1,4 +1,4 @@
-extends MarginContainer
+extends TextureRect
 
 export var shopItems = [
 	{

@@ -8,10 +8,10 @@ export var quantity = 10
 func _ready():
 	get_node("Quantity").text = str(quantity)
 	if type == ItemType.Wood:
-		get_node("Img").texture = load('res://assets/ResourcesIcons/Wood.png')
+		get_node("CenterContainer/Img").texture = load('res://assets/ResourcesIcons/Wood.png')
 	if type == ItemType.Stone:
-		get_node("Img").texture = load('res://assets/ResourcesIcons/Stone.png')
+		get_node("CenterContainer/Img").texture = load('res://assets/ResourcesIcons/Stone.png')
 	if type ==ItemType.Gem:
-		get_node("Img").texture = load('res://assets/ResourcesIcons/Gem.png')
+		get_node("CenterContainer/Img").texture = load('res://assets/ResourcesIcons/Gem.png')
 	if type ==ItemType.Mana:
-		get_node("Img").texture = load('res://assets/ResourcesIcons/Mana.png')
+		get_node("CenterContainer/Img").texture = load('res://assets/ResourcesIcons/Mana.png')
