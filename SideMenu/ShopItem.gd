@@ -4,6 +4,7 @@ enum ItemType {Wood, Stone, Gem, Mana}
 
 export var Building = ''
 export var ItemName = 'Upgrade tools'
+export var ItemDescription = 'Description'
 export var WoodPrice = 4
 export var StonePrice = 3
 export var GemPrice = 2
@@ -19,6 +20,7 @@ func _ready():
 	get_node("HBoxContainer2/VBoxContainer/HBoxContainer/Name").text = ItemName
 	get_node("HBoxContainer2/TextureRect").texture = load(imgPath)
 	setPrice()
+	$HBoxContainer2.hint_tooltip = ItemDescription
 
 func _process(delta):
 	CheckForResources()

@@ -76,6 +76,7 @@ func _ready():
 			var scene = shopItemScene.instance()
 			scene.Building = key.building
 			scene.ItemName = key.name
+			scene.ItemDescription = key.description
 			scene.WoodPrice = key.price[0]
 			scene.StonePrice = key.price[1]
 			scene.GemPrice = key.price[2]
