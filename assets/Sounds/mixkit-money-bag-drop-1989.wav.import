@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/mixkit-money-bag-drop-1989.wav-8ceef75ccff3f3e00795b811d7a3b0e4.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/mixkit-money-bag-drop-1989.wav"
+dest_files=[ "res://.import/mixkit-money-bag-drop-1989.wav-8ceef75ccff3f3e00795b811d7a3b0e4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
