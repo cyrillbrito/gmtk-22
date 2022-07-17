@@ -10,8 +10,14 @@ onready var tileMap: TileMap = get_node("Buildings")
 onready var tileMap2: TileMap = get_node("Buildings2")
 onready var tileMap3: TileMap = get_node("Buildings3")
 onready var mainNode = get_parent()
+onready var shopScene = get_node("/root/Main/SideMenu/MarginContainer/Shop")
 
 var placing
+var priceWood
+var priceStone
+var priceGem
+var priceMana
+var itemName
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -134,6 +140,11 @@ func canBuild(v):
 
 func _input(event):
 	
+	if (event is InputEventKey && event.pressed and event.scancode == KEY_ESCAPE) || (event is InputEventMouseButton and event.button_index == BUTTON_MASK_RIGHT and event.is_pressed()):
+		mainNode.AddAlert('Placing cancelled.')
+		cancelPlacement()
+		return
+
 	if !(event is InputEventMouseButton) && !(event is InputEventMouseMotion):
 		return
 
@@ -149,13 +160,25 @@ func _input(event):
 	elif event is InputEventMouseMotion:
 		mouseMove(mousePos)
 
+func cancelPlacement():
+	placing = null
+	priceWood = null
+	priceStone = null
+	priceGem = null
+	priceMana = null
+	mainNode.gameState = StateEnum.unblocked
+
 func mouseClick(mousePos: Vector2):
 	
 	if placing:
-		if canBuild(mousePos):
+		if placing == 'house' && (mousePos.x < 8 && mousePos.y > -8):
+			mainNode.AddAlert('The castle can only be built on the desert.')
+		elif canBuild(mousePos):
 			setMatrix(mousePos.x, mousePos.y, placing)
-			placing = null
-			mainNode.gameState = StateEnum.unblocked
+			mainNode.RemoveResources(priceWood, priceStone, priceGem, priceMana)
+			mainNode.AddAlert("Bought " + itemName)
+			shopScene.UpdateShop(itemName)
+			cancelPlacement()
 		else:
 			mainNode.AddAlert('Buildings and roads need to be next to other buildings or roads')
 		return
@@ -186,7 +209,12 @@ func mouseMove(mousePos: Vector2):
 		if cell != -1 && cell != 8 && cell != 18:
 			tileMap2.set_cellv(mousePos, cell)
 
-func placeBuilding(building):
-	mainNode.AddAlert("Place Building")
+func placeBuilding(building, _wood, _stone, _gem, _mana, name):
+	mainNode.AddAlert("Place " + name)
 	placing = building
+	priceWood = _wood
+	priceStone = _stone
+	priceGem = _gem
+	priceMana = _mana
+	itemName = name
 	mainNode.gameState = StateEnum.unblocked

@@ -5,7 +5,7 @@ var gameRound = 1
 
 var wood = 50
 var stone = 10
-var gem = 0
+var gem = 10
 var mana = 5
 
 export var toolsLevel = 1
@@ -47,11 +47,12 @@ func RemoveResources(_wood, _stone, _gem, _mana):
 func CanBuy(_wood, _stone, _gem, _mana):
 	return wood >= _wood && stone >= _stone && gem >= _gem  && mana >= _mana
 	
-func Buy(_wood, _stone, _gem, _mana, building):
-	RemoveResources(_wood, _stone, _gem, _mana)
+func Buy(_wood, _stone, _gem, _mana, building, itemName):
 	if(building != null):
 		gameState = StateEnum.blocked
-		$Map.placeBuilding(building)
+		$Map.placeBuilding(building, _wood, _stone, _gem, _mana, itemName)
+	else: 
+		RemoveResources(_wood, _stone, _gem, _mana)
 
 
 func gatherWood():
