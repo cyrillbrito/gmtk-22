@@ -22,7 +22,7 @@ export var shopItems = [
 		name = "Upgrade tools",
 		description = "Allows to break Stone",
 		disabled = true,
-		price = [3,1,0,2],
+		price = [3,0,0,2],
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	{
@@ -30,7 +30,7 @@ export var shopItems = [
 		name = "2nd Upgrade tools",
 		description = "Allows to break Gem",
 		disabled = true,
-		price = [3,1,2,2],
+		price = [3,1,0,2],
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	 {
@@ -46,7 +46,7 @@ export var shopItems = [
 		name = "Stone Harvester",
 		description = "This building will allow you harvest all stone surrounding it",
 		disabled = false,
-		price = [3,1,0,2],
+		price = [10,5,0,2],
 		imgPath = "res://assets/Buildings/StoneHarvester.png"
 	},
 	{
@@ -54,7 +54,7 @@ export var shopItems = [
 		name = "Gem Harvester",
 		description = "This building will allow you harvest all gem surrounding it",
 		disabled = false,
-		price = [3,1,2,2],
+		price = [20,10,5,2],
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	{

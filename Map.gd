@@ -184,6 +184,7 @@ func mouseClick(mousePos: Vector2):
 			mainNode.AddAlert("Bought " + itemName)
 			shopScene.UpdateShop(itemName)
 			$BuildAudio.play()
+			mainNode.gameState = StateEnum.unblocked
 			cancelPlacement()
 			
 		else:
@@ -224,4 +225,3 @@ func placeBuilding(building, _wood, _stone, _gem, _mana, name):
 	priceGem = _gem
 	priceMana = _mana
 	itemName = name
-	mainNode.gameState = StateEnum.unblocked
