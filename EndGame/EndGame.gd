@@ -1,4 +1,4 @@
-extends MarginContainer
+extends TextureRect
 
 export var wonInTurns = 0;
 
@@ -14,10 +14,8 @@ func _ready():
 		var continueBtn = get_node("MarginContainer/Container2")
 		continueBtn.queue_free()
 
-
 func _on_PlayAgain_pressed():
 	get_tree().reload_current_scene()
-
 
 func _on_Continue_pressed():
 	queue_free()
