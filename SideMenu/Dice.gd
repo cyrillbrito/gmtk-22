@@ -11,8 +11,15 @@ func _ready():
 func roll():
 	$DiceRollAudio.play()
 	mainNode.AddAlert('Rolling Dice...')
-	yield(get_tree().create_timer(2), "timeout")
-	var diceValue = UniqueRool()
+
+	var diceValue
+	for i in range(9):
+		var newVal = UniqueRool()
+		while diceValue == newVal:
+			newVal = UniqueRool()
+		diceValue = newVal
+		yield(get_tree().create_timer(.2), "timeout")
+
 	return diceValue
 
 func UniqueRool():
