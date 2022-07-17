@@ -188,7 +188,7 @@ func mouseClick(mousePos: Vector2):
 			cancelPlacement()
 			
 		else:
-			mainNode.AddAlert('Buildings and roads need to be next to other buildings or roads')
+			mainNode.AddWarningAlert('Buildings and roads need to be next to other buildings or roads')
 		return
 
 	# Normal mouse moving

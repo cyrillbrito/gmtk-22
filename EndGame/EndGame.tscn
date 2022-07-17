@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/Ui Assets/btn.png" type="Texture" id=1]
+[ext_resource path="res://assets/Ui Assets/Continuebtn.png" type="Texture" id=1]
 [ext_resource path="res://EndGame/EndGame.gd" type="Script" id=2]
 [ext_resource path="res://assets/Sounds/Win.mp3" type="AudioStream" id=3]
 [ext_resource path="res://assets/Sounds/GameOver.mp3" type="AudioStream" id=4]
 [ext_resource path="res://assets/Ui Assets/BoxEndGame.png" type="Texture" id=5]
 [ext_resource path="res://assets/Font/LargeFont.tres" type="DynamicFont" id=6]
+[ext_resource path="res://assets/Ui Assets/PlayAgainbtn.png" type="Texture" id=7]
 
 [node name="EndGame" type="Container"]
 anchor_right = 1.0
@@ -37,37 +38,37 @@ alignment = 1
 
 [node name="Label" type="Label" parent="TextureRect/MarginContainer"]
 modulate = Color( 0, 0, 0, 1 )
-margin_top = 235.0
+margin_top = 230.0
 margin_right = 742.0
-margin_bottom = 290.0
+margin_bottom = 285.0
 custom_fonts/font = ExtResource( 6 )
 text = "Great Game!
-You finisih the game\\n"
+You finisih the game"
 align = 1
 
 [node name="Container" type="CenterContainer" parent="TextureRect/MarginContainer"]
-margin_top = 294.0
+margin_top = 289.0
 margin_right = 742.0
 margin_bottom = 346.0
 
 [node name="PlayAgain" type="TextureButton" parent="TextureRect/MarginContainer/Container"]
-margin_left = 274.0
-margin_right = 467.0
-margin_bottom = 52.0
+margin_left = 272.0
+margin_right = 469.0
+margin_bottom = 57.0
 rect_pivot_offset = Vector2( -26.825, -100.219 )
 size_flags_horizontal = 5
 size_flags_vertical = 5
-texture_normal = ExtResource( 1 )
+texture_normal = ExtResource( 7 )
 
 [node name="Container2" type="CenterContainer" parent="TextureRect/MarginContainer"]
 margin_top = 350.0
 margin_right = 742.0
-margin_bottom = 402.0
+margin_bottom = 407.0
 
 [node name="Continue" type="TextureButton" parent="TextureRect/MarginContainer/Container2"]
-margin_left = 274.0
-margin_right = 467.0
-margin_bottom = 52.0
+margin_left = 272.0
+margin_right = 469.0
+margin_bottom = 57.0
 rect_pivot_offset = Vector2( -26.825, -100.219 )
 size_flags_horizontal = 5
 size_flags_vertical = 5

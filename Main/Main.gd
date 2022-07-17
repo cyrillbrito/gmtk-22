@@ -52,7 +52,13 @@ func AddAlert(newAlert):
 	if(alerts.size()>6):
 		alerts.remove(0)
 	alerts.append(newAlert)
-	
+
+func AddWarningAlert(newAlert):
+	$ErrorAudio.play()
+	if(alerts.size()>6):
+		alerts.remove(0)
+	alerts.append(newAlert)
+
 func SetResources():
 	get_node("SideMenu/MarginContainer/Resourses/Resources/Wood/Quantity").text = str(wood)
 	get_node("SideMenu/MarginContainer/Resourses/Resources/Stone/Quantity").text = str(stone)
@@ -114,17 +120,19 @@ func gatherHarvesterGem(multiplier):
 
 func preGather(reqTool):
 	if gameState != StateEnum.unblocked:
-		AddAlert('Dice already rolling!')
+		AddWarningAlert('Dice already rolling!')
 		yield()
 		return 0
 
 	if toolsLevel < reqTool:
-		AddAlert('You need to upgrade your tools to gather this resource.')
+		$ErrorAudio.play()
+		AddWarningAlert('You need to upgrade your tools to gather this resource.')
 		yield()
 		return 0
 
 	if mana < 1:
-		AddAlert('You need at least 1 mana.')
+		$ErrorAudio.play()
+		AddWarningAlert('You need at least 1 mana.')
 		yield()
 		return 0
 

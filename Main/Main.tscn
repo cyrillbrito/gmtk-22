@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Main/Main.gd" type="Script" id=1]
 [ext_resource path="res://SideMenu/SideMenu.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/Background/cloud(1).png" type="Texture" id=7]
 [ext_resource path="res://assets/Background/bush(1).png" type="Texture" id=8]
 [ext_resource path="res://assets/Font/LargeFont.tres" type="DynamicFont" id=9]
+[ext_resource path="res://assets/Sounds/error.wav" type="AudioStream" id=10]
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 0.72, 0.72 )
@@ -62,3 +63,6 @@ margin_bottom = 253.778
 rect_min_size = Vector2( 300, 150 )
 custom_fonts/font = ExtResource( 9 )
 text = "PlaceHolder"
+
+[node name="ErrorAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
