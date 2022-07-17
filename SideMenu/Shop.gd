@@ -42,6 +42,15 @@ export var shopItems = [
 		imgPath = "res://assets/Buildings/GemHarvester.png"
 	},
 	{
+		building = 'house',
+		name = "Castle",
+		description = "...",
+		disabled = false,
+		price = [1,1,1,1],
+		# price = [100,50,20,4],
+		imgPath = "res://assets/Buildings/GemHarvester.png"
+	},
+	{
 		building = "",
 		name = "Upgrade tools",
 		description = "Allows to break Stone",
